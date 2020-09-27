@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
 
@@ -20,8 +20,8 @@
       <div class="menu">
         <ul>
            <li><a href="index.php">home</a></li>
-              <li><a href="properties.php">properties</a></li>
-
+<!--               <li><a href="properties.php">properties</a></li>
+ -->
 
                        <li><a href="contact.php">contact</a></li>
                          <li><a href="about.php">About us</a></li>
@@ -48,54 +48,65 @@
 </div>
 
 
- <form action="controller/createUser.php" method="POST" enctype="multipart/form-data" id="type">
+ <form action="controller/createUser.php" method="POST" enctype="multipart/form-data" onsubmit="return Validate()" name="vform">
 <div class="register">
 <div class="register_content">
 <div class="left">
 
-<div class="form-group">
+<div class="form-group" id="username_div">
  <label for="user_name">User Name :</label>
- <input type="text" id="username" name="username" class="form-control"  placeholder="Enter User Name" required>
-</div>
-<div class="form-group">
- <label for="email">Email :</label>
- <input type="email" id="email" name="email" class="form-control"  placeholder="Enter Email" required>
-</div>
-<div class="form-group">
- <label for="password">Password :</label>
- <input type="password" id="password" name="password" class="form-control"  placeholder="Enter Password" required>
+ <input type="text" id="username1" name="username" class="form-control" onBlur="checkusernameAvailability()"  placeholder="Enter User Name" >
+ <span id="username_error"></span>
+ <span id="username-availability-status" style="font-size:12px;"></span>
 </div>
 
+<div class="form-group" id="email_div">
+ <label for="email">Email :</label>
+ <input type="email" id="email1" name="email" class="form-control" onBlur="checkemailAvailability()"  placeholder="Enter Email" >
+ <span id="email_error"></span>
+ <span id="user-email-availability-status" style="font-size:12px;"></span>
+
+</div>
+
+<div class="form-group" id="password_div">
+ <label for="password">Password :</label>
+ <input type="password" id="password1" name="password" class="form-control"  placeholder="Enter Password" >
+ <span id="password_error"></span>
+</div>
 
 </div><!-- end left -->
 <div class="right">
- <div class="form-group">
+ <div class="form-group" id="contact_no_div">
    <label for="contact">Contact :</label>
-   <input type="text" id="contact_no" name="contact_no" class="form-control"  placeholder="Enter mobile no" required>
+   <input type="text" id="contact_no1" name="contact_no" class="form-control"  placeholder="Enter mobile no" >
+   <span id="contact_no_error"></span>
  </div>
 
- <div class="type">
+ <div class="form-group type" id="type_div">
 <label for="Type">Select Type :</label>
-
-<select class="form-control  id="type" name="type" form="type">
-
+<select class="form-control"  id="type1" name="type">
+<option value=""></option>
 <option value="bachelor">Bachelor</option>
 <option value="family">Family</option>
 </select>
+<span id="type_error"></span>
 </div>
+
+<div class="form-group" id="members_div">
 <label for="Type">Select member :</label>
-
- <select class="form-control  id="type" name="members" form="type">
-
+ <select class="form-control"  id="members" name="members">
+ <option value=""></option>
 <option value="1-3">1-3</option>
 <option value="1-6">1-6</option>
 <option value="1-8">1-8</option>
 <option value="1-10">1-10</option>
 </select>
+<span id="members_error"></span>
+</div>
 
 
 <div class="but">
-<button type="submit" name = "createUser" class="btn btn-primary">Register</button>
+<button type="submit" id="submit" name = "createUser" class="btn btn-primary">Register</button>
 </div>
 </div><!-- end right -->
 </div> <!-- end_register_content -->
@@ -117,7 +128,7 @@
  <input type="text" id="password" name="password" class="form-control"  placeholder="Enter Password" required>
 </div>
 <div class="but">
-<button type="submit" name = "User_login" class="btn btn-primary">Login</button>
+<button type="submit"  name = "User_login" class="btn btn-primary">Login</button>
 </div>
 </form>
 </div><!-- end login_css -->
@@ -133,29 +144,46 @@
 <!-- -->
   </div>
 
+  <script>
+//This function checks email-availability-status
+function checkemailAvailability() {
+$("#loaderIcon").show();
+jQuery.ajax({
+  url: "controller/check_availability.php",
+  data:'email='+$("#email1").val(),
+  type: "POST",
+success:function(data){
+$("#user-email-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+function checkusernameAvailability() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "controller/check_availability.php",
+data:'username='+$("#username1").val(),
+type: "POST",
+success:function(data){
+$("#username-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+
+</script>
+
+<script src="js/registration.js"></script>
+<script src="js/jquery-3.5.1.min.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+ --><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-          document.getElementById('log').addEventListener("click", function()
-          { document.querySelector('.login_css').style.display = "flex";
-            document.querySelector('.register').style.display = "none";
 
-            document.getElementById('log').style.backgroundColor ="#007bff";
-           document.getElementById('log').style.borderColor ="#007bff";
-           document.getElementById('reg').style.borderColor ="#6c757d";
-           document.getElementById('reg').style.backgroundColor ="#6c757d";
-         });
-           document.getElementById('reg').addEventListener("click", function()
-           { document.querySelector('.register').style.display = "flex";
-           document.getElementById('reg').style.backgroundColor ="#007bff";
-           document.getElementById('reg').style.borderColor ="#007bff";
-           document.getElementById('log').style.borderColor ="#6c757d";
-           document.getElementById('log').style.backgroundColor ="#6c757d";
-            document.querySelector('.login_css').style.display = "none";
-         });
-        </script>
+
 </body>
 </html>

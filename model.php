@@ -339,19 +339,55 @@ function property_info_owner($id){
         return true;
     }
     
-  /*   function delete_interested_property($owner_id, $p_id, $user_id){
+    function check_email($email){
         $conn = db_conn();
-        $selectQuery = "DELETE FROM `interested_property` WHERE `p_details_id` = ? AND `owner_id` = ? AND `user_id` = ?";
+        $selectQuery = "SELECT * FROM `user` WHERE email= '$email'";
         try{
-            $stmt = $conn->prepare($selectQuery);
-            $stmt->execute([$p_id, $owner_id, $user_id]);
+            $stmt = $conn->query($selectQuery);
+            $stmt->execute();
+    
+            $count=$stmt->rowCount(); 
+            if($count > 0){
+                echo "<span style='color:white;''>"."Email already exists"."</span>";
+                echo "<script>$('#submit').prop('disabled',true);</script>";
+            }
+            else{
+                echo "<span style='color:white;''>"."Email available for Registration"."</span>";
+               echo "<script>$('#submit').prop('disabled',false);</script>";
+              }
+    
+            //return $count;
+    
         }catch(PDOException $e){
             echo $e->getMessage();
         }
         $conn = null;
-    
-        return true;
-    } */
+     }
 
+
+     function check_user_name($user_name){
+        $conn = db_conn();
+        $selectQuery = "SELECT * FROM `user` WHERE username= '$user_name'";
+        try{
+            $stmt = $conn->query($selectQuery);
+            $stmt->execute();
+    
+            $count=$stmt->rowCount(); 
+            if($count > 0){
+                echo "<span style='color:white;''>"."User Name already exists"."</span>";
+                echo "<script>$('#submit').prop('disabled',true);</script>";
+            }
+            else{
+                echo "<span style='color:white;''>"."User Name available for Registration"."</span>";
+               echo "<script>$('#submit').prop('disabled',false);</script>";
+              }
+    
+            //return $count;
+    
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        $conn = null;
+     }
 
 ?>

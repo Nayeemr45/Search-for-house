@@ -6,7 +6,7 @@
     <title>Owner</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
 
@@ -19,9 +19,8 @@
       <div class="menu">
         <ul>
            <li><a href="index.php">home</a></li>
-              <li><a href="properties.php">properties</a></li>
-
-
+<!--               <li><a href="properties.php">properties</a></li>
+ -->
                        <li><a href="contact.php">contact</a></li>
                          <li><a href="about.php">About us</a></li>
                          <li id="sbutton"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a href="registration.php">login or sign up</a></li>

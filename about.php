@@ -18,9 +18,6 @@
         <div class="menu">
           <ul>
              <li><a href="index.php">Home</a></li>
-                <li><a href="properties.php">Properties</a></li>
-
-
                          <li><a href="contact.php">Contact</a></li>
                            <li><a href="about.php">About us</a></li>
                            <li id="sbutton"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a href="registration.php">login or sign up</a></li>
