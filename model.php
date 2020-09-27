@@ -187,7 +187,7 @@ function loginUser2($data){
 
 function property_info(){
 	$conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` ORDER BY `id` DESC";
+    $selectQuery = "SELECT property_details.*,owner.email,owner.contact FROM `property_details`INNER JOIN `owner` on property_details.owner_id=owner.id ORDER BY `id` DESC";
     try{
         $stmt = $conn->query($selectQuery);
 

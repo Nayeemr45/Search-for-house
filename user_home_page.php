@@ -76,13 +76,17 @@
             <div class="card-body">
               <div class="mb-2">
                 <a class="d-inline-block text-body small font-weight-bold mb-1" href="#"><?php echo  $p_info['house_no'];?>/<?php echo  $p_info['street'];?>,<?php echo  $p_info['area'];?>,<?php echo  $p_info['thana'];?>,<?php echo  $p_info['district'];?></a>
-                <span class="d-block font-size-1">
-                  <a class="text-inherit" href="#">Floor :<?php echo  $p_info['floor'];?> Room no :<?php echo  $p_info['room'];?></a>
-                  <span class="badge badge-success badge-pill ml-1" <?php if($p_info['status'] =="Booked") {?> style="background-color:red;" <?php } ?> <?php if($p_info['status'] =="Someone Interested") {?> style="background-color:yellow; color:black;" <?php } ?> >
+                <span class="badge badge-success badge-pill ml-1" <?php if($p_info['status'] =="Booked") {?> style="background-color:red;" <?php } ?> <?php if($p_info['status'] =="Someone Interested") {?> style="background-color:yellow; color:black;" <?php } ?> >
                   <?php 
                   echo $p_info['status'];
                   ?>
                   </span>
+                <span class="d-block font-size-1">
+                  
+                  <a class="text-inherit" href="#">Floor :<?php echo  $p_info['floor'];?> Room no :<?php echo  $p_info['room'];?></a><br>
+                  Email :<a class="text-inherit" href="mailto:<?php echo  $p_info['email'];?>"><?php echo  $p_info['email'];?> </a><br>
+                  Contact :<a class="text-inherit" href="tel:88 <?php echo  $p_info['contact'];?>"><?php echo  $p_info['contact'];?></a>
+                  
                   </span>
                   <div class="d-block">
                   <span class="h5">৳<?php echo  $p_info['price'];?></span>
