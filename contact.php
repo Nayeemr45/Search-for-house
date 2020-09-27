@@ -61,8 +61,7 @@
                </div>
               <div class="menu">
                 <ul>
-                   <li><a href="index.V">home</a></li>
-                      <li><a href="properties.php">properties</a></li>
+                   <li><a href="index.php">home</a></li>
                                <li><a href="contact.php">contact</a></li>
                                     <li><a href="about.php">About us</a></li>
                                  <li id="button"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a href="registration.php">login or sign up</a></li>

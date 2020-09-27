@@ -18,8 +18,8 @@
         <div class="menu">
           <ul>
              <li><a href="index.php">home</a></li>
-                <li><a href="properties.php">properties</a></li>
-
+<!--                 <li><a href="properties.php">properties</a></li>
+ -->
 
                          <li><a href="contact.php">contact</a></li>
                            <li><a href="about.php">About us</a></li>

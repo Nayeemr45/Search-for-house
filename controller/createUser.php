@@ -10,10 +10,10 @@ if (isset($_POST['createUser'])) {
 	$data['type'] = $_POST['type'];
 	$data['members'] = $_POST['members'];
 
-  if (addUser($data)) {
+   if (addUser($data)) {
 	echo "<script>location.href='../registration.php'</script>";
 
-  }
+  } 
 }
 elseif (isset($_POST['createUser2'])) {
     $data['name'] = $_POST['name'];
