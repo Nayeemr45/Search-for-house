@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../css/properties.css">
     <link rel="stylesheet" href="../css/user.css">
     <link rel="shortcut icon" href="#" type="image/x-icon">
-
 </head>
 <body>
 
@@ -171,21 +170,23 @@
       </div><!-- end part_2 -->
 
       <div class="part_3">
-        <div class="print_file">
+        <div class="search-box">
 
-            <nav class="navbar navbar-dark bg-success justify-content-between">
-                <form action="search_properties.php" METHOD="POST" class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" size=50 aria-label="Search">
-                    <button name="search_properties"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
-                </form>
-        </nav>
-
-        </div><!-- end print file -->
+        <nav class="navbar navbar-dark bg-success justify-content-between">
+    <form action="search_properties.php" METHOD="POST" class="form-inline">
+      <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" size=50 aria-label="Search">
+      <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" id="">
+      <button name="search_properties"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
+    </form>
+  </nav>    
+</div>
+        </div><!-- end search-box -->
       </div><!-- end part_3 -->
 
       
    </div><!-- end inside_part -->
  </div><!-- end contaiber -->
+
 
 
  <script type="text/javascript">

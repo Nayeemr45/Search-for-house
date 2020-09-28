@@ -219,7 +219,7 @@ function search_properties($data){
         echo $e->getMessage();
     }
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    /* if(print_r($rows[2]['status'])=="Booking"){
+      /* if(print_r($rows[2]['status'])=="Booking"){
         echo "<script>$('#submit').prop('disabled', true);</script>";
 
     }else{
@@ -389,5 +389,57 @@ function property_info_owner($id){
         }
         $conn = null;
      }
+
+     function check_email2($email){
+        $conn = db_conn();
+        $selectQuery = "SELECT * FROM `owner` WHERE email= '$email'";
+        try{
+            $stmt = $conn->query($selectQuery);
+            $stmt->execute();
+    
+            $count=$stmt->rowCount(); 
+            if($count > 0){
+                echo "<span style='color:white;''>"."Email already exists"."</span>";
+                echo "<script>$('#submit').prop('disabled',true);</script>";
+            }
+            else{
+                echo "<span style='color:white;''>"."Email available for Registration"."</span>";
+               echo "<script>$('#submit').prop('disabled',false);</script>";
+              }
+    
+            //return $count;
+    
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        $conn = null;
+     }
+
+
+
+         function check_owner_name($owner_name){
+                $conn = db_conn();
+                $selectQuery = "SELECT * FROM `owner` WHERE name= '$owner_name'";
+                try{
+                        $stmt = $conn->query($selectQuery);
+                        $stmt->execute();
+
+                        $count=$stmt->rowCount();
+                        if($count > 0){
+                                echo "<span style='color:white;''>"."Owner Name already exists"."</span>";
+                                echo "<script>$('#submit').prop('disabled',true);</script>";
+                        }
+                        else{
+                                echo "<span style='color:white;''>"."Owner Name available for Registration"."</span>";
+                             echo "<script>$('#submit').prop('disabled',false);</script>";
+                            }
+
+                        //return $count;
+
+                }catch(PDOException $e){
+                        echo $e->getMessage();
+                }
+                $conn = null;
+         }
 
 ?>

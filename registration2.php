@@ -49,29 +49,39 @@
 </div>
 
 
- <form action="controller/createUser.php" method="POST" enctype="multipart/form-data" id="type">
+ <form action="controller/createUser.php" method="POST" enctype="multipart/form-data" onsubmit="return Validate()" name="vform">
 <div class="register">
 <div class="register_content">
 <div class="left">
-<div class="form-group">
+
+<div class="form-group" id="ownername_div">
  <label for="name">Owner Name :</label>
- <input type="text" id="name" name="name" class="form-control"  placeholder="Enter Owner Name" required>
-</div>
-<div class="form-group">
- <label for="email">Email :</label>
- <input type="text" id="email" name="email" class="form-control"  placeholder="Enter Email" required>
-</div>
-<div class="form-group">
- <label for="password">Password :</label>
- <input type="text" id="password" name="password" class="form-control"  placeholder="Enter Password" required>
-</div>
-<div class="form-group">
- <label for="contact">Contact No :</label>
- <input type="text" id="contact" name="contact" class="form-control"  placeholder="Enter Mobile no" required>
+ <input type="text" id="ownername1" name="name" class="form-control" onBlur="checkownernameAvailability()" placeholder="Enter Owner Name" >
+ <span id="ownername_error"></span>
+ <span id="ownername-availability-status" style="font-size:12px;"></span>
 </div>
 
+<div class="form-group" id="email_div">
+  <label for="email">Email :</label>
+  <input type="email" id="email1" name="email" class="form-control" onBlur="checkemailAvailability()"  placeholder="Enter Email" >
+ <span id="email_error"></span>
+ <span id="owner-email-availability-status" style="font-size:12px;"></span>
+</div>
+
+ <div class="form-group" id="password_div">
+  <label for="password">Password :</label>
+  <input type="password" id="password1" name="password" class="form-control"  placeholder="Enter Password" >
+  <span id="password_error"></span>
+ </div>
+
+ <div class="form-group" id="contact_no_div">
+   <label for="contact">Contact :</label>
+   <input type="text" id="contact_no1" name="contact_no" class="form-control"  placeholder="Enter mobile no" >
+   <span id="contact_no_error"></span>
+ </div>
+
 <div class="but">
-<button type="submit" name = "createUser2" class="btn btn-secondary">Register</button>
+<button type="submit" name ="createUser2" id="submit" class="btn btn-primary">Register</button>
 </div>
 
 </div><!-- end left -->
@@ -85,14 +95,14 @@
 
 <div class="login_css">
 <form action="controller/User_login.php" method="POST" enctype="multipart/form-data" id="type>
- <p><span style="font-size:24px; color: black;"><strong>Owner login:</strong></span></p>
+ <p><span style="font-size:24px; color: black;"><strong><p style="font-size:30px; color:#42ecf5">Owner login:</p></strong></span></p>
 <div class="form-group">
  <label for="name">Owner Name :</label>
  <input type="text" name="name" class="form-control"  placeholder="Enter User Name" required>
 </div>
 <div class="form-group">
  <label for="password">Password :</label>
- <input type="text" name="password"  class="form-control"  placeholder="Enter Password" required>
+ <input type="password" name="password"  class="form-control"  placeholder="Enter Password" required>
 </div>
 <div class="but">
 <button type="submit" name = "User_login2" class="btn btn-secondary">Login</button>
@@ -113,28 +123,46 @@
 
     </div><!-- end container -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script>
+  //This function checks email-availability-status
+  function checkemailAvailability() {
+  $("#loaderIcon").show();
+  jQuery.ajax({
+    url: "controller/check_availability2.php",
+    data:'email='+$("#email1").val(),
+    type: "POST",
+  success:function(data){
+  $("#owner-email-availability-status").html(data);
+  $("#loaderIcon").hide();
+  },
+  error:function (){}
+  });
+  }
+
+  function checkownernameAvailability() {
+  $("#loaderIcon").show();
+  jQuery.ajax({
+  url: "controller/check_availability2.php",
+  data:'name='+$("#ownername1").val(),
+  type: "POST",
+  success:function(data){
+  $("#ownername-availability-status").html(data);
+  $("#loaderIcon").hide();
+  },
+  error:function (){}
+  });
+  }
+
+  </script>
+
+
+  <script src="js/registration2.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+ --><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-          document.getElementById('log').addEventListener("click", function()
-          { document.querySelector('.login_css').style.display = "flex";
-            document.querySelector('.register').style.display = "none";
 
-            document.getElementById('log').style.backgroundColor ="#007bff";
-           document.getElementById('log').style.borderColor ="#007bff";
-           document.getElementById('reg').style.borderColor ="#6c757d";
-           document.getElementById('reg').style.backgroundColor ="#6c757d";
-         });
-           document.getElementById('reg').addEventListener("click", function()
-           { document.querySelector('.register').style.display = "flex";
-           document.getElementById('reg').style.backgroundColor ="#007bff";
-           document.getElementById('reg').style.borderColor ="#007bff";
-           document.getElementById('log').style.borderColor ="#6c757d";
-           document.getElementById('log').style.backgroundColor ="#6c757d";
-            document.querySelector('.login_css').style.display = "none";
-         });
-        </script>
 </body>
 </html>

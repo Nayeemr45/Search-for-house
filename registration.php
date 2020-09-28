@@ -106,8 +106,9 @@
 
 
 <div class="but">
-<button type="submit" id="submit" name = "createUser" class="btn btn-primary">Register</button>
+<button type="submit" id="submit" name ="createUser" class="btn btn-primary">Register</button>
 </div>
+
 </div><!-- end right -->
 </div> <!-- end_register_content -->
 

@@ -19,11 +19,10 @@ elseif (isset($_POST['createUser2'])) {
     $data['name'] = $_POST['name'];
     $data['email'] = $_POST['email'];
     $data['password'] = $_POST['password'];
-    $data['contact'] = $_POST['contact'];
+    $data['contact'] = $_POST['contact_no'];
 
 
   if (addUser2($data)) {
-    //require_once '../login_register_user2.php';
     echo "<script>location.href='../registration2.php'</script>";
 
 
