@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Search for house</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -33,7 +34,24 @@
       <div class="heading">
       <h1 style="color:white">Find Your Perfect Place</h1>
     </div>
+    <div class="search-box">
 
+      <nav class="navbar navbar-dark  justify-content-between">
+      <form action="controller/search_properties2.php" METHOD="POST" class="form-inline">
+      <input class="form-control mr-sm-2" type="search" id="search" name="search" placeholder="Search" autocomplete="off" size=50 aria-label="Search">
+      <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+      <button name="search_properties"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
+      </form>
+      </nav>  
+      
+      <div class="col-md-5" style="position: relative;margin-top: -8px;margin-left: 1px;">
+        <div class="list-group" id="show-list">
+          <!-- Here autocomplete list will be display -->
+        </div>
+      </div>
+
+      
+    </div><!-- end search-box -->
 
     </div>
 
@@ -65,9 +83,35 @@
     </div>
     </footer>
 
-
+<script>
+  $(document).ready(function () {
+  // Send Search Text to the server
+  $("#search").keyup(function () {
+    let searchText = $(this).val();
+    if (searchText != "") {
+      $.ajax({
+        url: "controller/action.php",
+        method: "post",
+        data: {
+          query: searchText,
+        },
+        success: function (response) {
+          $("#show-list").html(response);
+        },
+      });
+    } else {
+      $("#show-list").html("");
+    }
+  });
+  // Set searched text in input field on click of search button
+  $(document).on("click", "a", function () {
+    $("#search").val($(this).text());
+    $("#show-list").html("");
+  });
+});
+</script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<!--         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ -->        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 </body>
 </html>

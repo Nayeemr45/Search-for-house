@@ -6,16 +6,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<!--     <link rel="stylesheet" href="../css/theme.css">
- -->    <link rel="stylesheet" href="../css/select2.min.css">
+    <link rel="stylesheet" href="../css/select2.min.css">
     <link rel="stylesheet" href="../css/properties.css">
-<!--     <link rel="stylesheet" href="../css/owner.css">
- -->
+
 </head>
 <body>
 <div class="container">
         
-      
+      <div class="back">
+      <nav class="navbar navbar-light bg-light fixed-top">
+      <button type="submit" id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1"><a href="../index.php">Back</a></button>
+</nav>
+      </div>
 
 
         <ul class="list-unstyled">
@@ -60,17 +62,11 @@
                   <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                   <input type="hidden" name="p_id" value="<?php echo $p_info['id']; ?>">
     
-                  <button type="submit" <?php if($p_info['status'] =="Booked") {?> disabled="disabled" <?php } ?> <?php
-          foreach ($check_user_id as $i => $check):
-            if($check['user_id'] == $user_id and $check['p_details_id'] == $p_info['id']) {?>
+                  <button type="submit" <?php if($p_info['status'] =="Booked") {?> disabled="disabled" <?php } ?> 
     
     
-     disabled="disabled" 
     
-    <?php }
-           endforeach;
-    
-     ?>  id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
+     id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
     <!--               <button type="submit" <?php if($p_info['status'] =="Booked") {?> disabled="disabled" <?php } ?><?php if($check_user_id == $user_id && $check_p_id == $p_info['id']) {?> disabled="disabled" <?php } ?>  id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
      -->            </div>
               </div>

@@ -57,5 +57,13 @@
   }
 .container{
   margin-left: 280px;
-  margin-top: 70px;
+  margin-top: 105px;}
+
+.back{
+  margin-top: -30px;
+  margin-bottom: 40px;
+}
+.back a{
+text-decoration: none;
+font-size: 24px;
 }

@@ -229,6 +229,37 @@ function search_properties($data){
 
     }
 
+ /*    $sql = 'SELECT country_name FROM countries WHERE country_name LIKE :country';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['country' => '%' . $inpText . '%']);
+    $result = $stmt->fetchAll();
+
+   
+ */
+
+function autosearch($data){
+	$conn = db_conn();
+    $selectQuery = "SELECT area FROM `property_details` Where area LIKE :area";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute(['area' => '%' . $data . '%']);
+        
+
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($result) {
+        foreach ($result as $row) {
+          echo '<a href="#" class="list-group-item list-group-item-action border-1">' . $row['area'] . '</a>';
+        }
+      } else {
+        echo '<p class="list-group-item border-1">No Record</p>';
+      }           
+/*        return $rows;
+ */
+    }
+
 
 function show_interested_people($owner_id){
 	$conn = db_conn();
