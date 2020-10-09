@@ -140,7 +140,7 @@
       <div class="part_2">
         <div class="save_file">
         <table class="table table-hover">
-  <thead class="bg-info th">
+        <thead class="bg-info th">
     <tr>
       <th scope="col">House No</th>
       <th scope="col">House Area</th>

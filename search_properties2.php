@@ -7,18 +7,47 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/select2.min.css">
-    <link rel="stylesheet" href="../css/properties.css">
+    <link rel="stylesheet" href="../css/properties2.css">
 
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
         
-      <div class="back">
+<!--       <div class="back">
       <nav class="navbar navbar-light bg-light fixed-top">
       <button type="submit" id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1"><a href="../index.php">Back</a></button>
-</nav>
-      </div>
+      </nav>
+      
+      </div> -->
 
+
+
+
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Search For House</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.php">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../contact.php">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.php">About Us</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="../controller/search_properties2.php" METHOD="POST" >
+      <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" size=50 >
+      <button name="search_properties" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 
         <ul class="list-unstyled">
           <!-- Products -->

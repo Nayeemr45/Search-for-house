@@ -89,6 +89,8 @@ function interested_properties($data,$p_id){
 }
 
 
+
+
 function loginUser($data){
 
 	$conn = db_conn();
@@ -135,6 +137,52 @@ function loginUser($data){
     $conn = null;
     return true;
 }
+
+
+function admin_login($data){
+
+	$conn = db_conn();
+    $selectQuery = "SELECT * FROM `admin` WHERE username = :user_name AND password = :password";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+        	'user_name' => $data['user_name'],
+        	'password' => $data['password']
+        ]);
+        $count=$stmt->rowCount();
+        echo $count;
+        session_start();
+        if($count > 0)
+    {   
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+        
+        $_SESSION["id"] =$row['id'];
+        $_SESSION["user_name"] = $data["user_name"];
+       $_SESSION["password"] = $data["password"];
+       echo "success";
+
+       echo "<script>location.href='./welcome3.php'</script>";
+    }
+}
+    else{
+        echo "<script>alert('uname or pass incorrect!')</script>";
+        echo "<script>location.href='../admin.php'</script>";
+	
+        $message = '<label>Wrong Data</label>';
+        echo $message;
+    }
+       // return $count;
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    
+    $conn = null;
+    return true;
+}
+
+
 
 function loginUser2($data){
 
@@ -187,7 +235,7 @@ function loginUser2($data){
 
 function property_info(){
 	$conn = db_conn();
-    $selectQuery = "SELECT property_details.*,owner.email,owner.contact FROM `property_details`INNER JOIN `owner` on property_details.owner_id=owner.id ORDER BY `id` DESC";
+    $selectQuery = "SELECT property_details.*,owner.email,owner.contact FROM `property_details`INNER JOIN `owner` on property_details.owner_id=owner.id WHERE property_details.approve ='yes'  ORDER BY `id` DESC";
     try{
         $stmt = $conn->query($selectQuery);
 
@@ -197,45 +245,55 @@ function property_info(){
         echo $e->getMessage();
     }
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    /* if(print_r($rows[2]['status'])=="Booking"){
-        echo "<script>$('#submit').prop('disabled', true);</script>";
-
-    }else{
-        echo "<script>$('#submit').prop('disabled', false);</script>";
-    }
-       */              return $rows;
+    
+    return $rows;
 
     }
 
 function search_properties($data){
 	$conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where area LIKE '$data%'";
+    $selectQuery = "SELECT * FROM `property_details` Where area LIKE '$data%' AND approve='yes'";
     try{
         $stmt = $conn->query($selectQuery);
 
-        
+        //$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $count=$stmt->rowCount();
+        if($count > 0)
+        {
+         $output .= '
+          <div class="table-responsive">
+           <table class="table table bordered">
+            <tr>
+             <th>Customer Name</th>
+             <th>Address</th>
+             <th>City</th>
+             <th>Postal Code</th>
+             <th>Country</th>
+            </tr>
+         ';
+         while($row = mysqli_fetch_array($result))
+         {
+          $output .= '
+           <tr>
+            <td>'.$row["CustomerName"].'</td>
+            <td>'.$row["Address"].'</td>
+            <td>'.$row["City"].'</td>
+            <td>'.$row["PostalCode"].'</td>
+            <td>'.$row["Country"].'</td>
+           </tr>
+          ';
+         }
+         echo $output;
+        } 
 
     }catch(PDOException $e){
         echo $e->getMessage();
     }
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      /* if(print_r($rows[2]['status'])=="Booking"){
-        echo "<script>$('#submit').prop('disabled', true);</script>";
-
-    }else{
-        echo "<script>$('#submit').prop('disabled', false);</script>";
-    }
-       */              return $rows;
+                 return $rows;
 
     }
 
- /*    $sql = 'SELECT country_name FROM countries WHERE country_name LIKE :country';
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['country' => '%' . $inpText . '%']);
-    $result = $stmt->fetchAll();
 
-   
- */
 
 function autosearch($data){
 	$conn = db_conn();
@@ -280,6 +338,22 @@ function show_interested_people($owner_id){
 function property_info_owner($id){
 	$conn = db_conn();
     $selectQuery = "SELECT * FROM `property_details` WHERE owner_id = '$id'";
+    try{
+        $stmt = $conn->query($selectQuery);
+
+        
+
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+
+    }
+
+function property_info_admin(){
+	$conn = db_conn();
+    $selectQuery = "SELECT * FROM `property_details` WHERE approve = 'no'";
     try{
         $stmt = $conn->query($selectQuery);
 
@@ -354,6 +428,23 @@ function property_info_owner($id){
         $conn = null;
         return true;
     }
+    function approved_properties($approved, $p_id){
+        $conn = db_conn();
+        $selectQuery = "UPDATE property_details set approve = ? where  ID = ?";
+        try{
+            $stmt = $conn->prepare($selectQuery);
+            $stmt->execute([
+                $approved, $p_id
+            ]);
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        
+        $conn = null;
+        return true;
+    }
+
+
     function confirm_interested_property($confirm,  $p_id, $owner_id, $user_id){
         $conn = db_conn();
         $selectQuery = "UPDATE interested_property set confirm = ? where  p_details_id= ? AND owner_id = ? AND user_id= ?";

@@ -39,9 +39,11 @@ if (isset($_SESSION['username'])) {
 
 else{
 
-	echo "<h1>Please log In !</h1>";
+/* 	echo "<h1>Please log In !</h1>";
+	echo "<br><a href='logout.php'>Go Home</a><br>"; */
 
-	echo "<br><a href='logout.php'>Go Home</a><br>";
+	echo "<script>alert('Please log In !')</script>";
+	echo "<script>location.href='../registration.php'</script>";
 
 }
 
