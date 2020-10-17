@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2020 at 09:56 AM
+-- Generation Time: Oct 17, 2020 at 11:43 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -32,10 +32,17 @@ CREATE TABLE `admin` (
   `username` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `owner_id` int(10) NOT NULL,
-  `p_d_id` int(10) NOT NULL
+  `user_id` int(10) DEFAULT NULL,
+  `owner_id` int(10) DEFAULT NULL,
+  `p_d_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `password`, `user_id`, `owner_id`, `p_d_id`) VALUES
+(2, 'arun', 'arun1@gmail.com', '12345678', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -81,7 +88,8 @@ CREATE TABLE `owner` (
 --
 
 INSERT INTO `owner` (`id`, `name`, `email`, `password`, `contact`, `user_id`) VALUES
-(2, 'Nayeem', 'nayeem@gmail.com', '1234', '123', NULL);
+(2, 'Nayeem', 'nayeem@gmail.com', '1234', '01531965575', NULL),
+(3, 'Nayeem Ahmed', 'nayeemr.45@gmail.com', '1234567890', '12345678901', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,6 +109,7 @@ CREATE TABLE `property_details` (
   `price` int(10) NOT NULL,
   `status` varchar(100) NOT NULL DEFAULT 'Newly Added',
   `image` varchar(200) NOT NULL,
+  `approve` varchar(50) NOT NULL DEFAULT 'no',
   `owner_id` int(10) DEFAULT NULL,
   `user_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -109,14 +118,15 @@ CREATE TABLE `property_details` (
 -- Dumping data for table `property_details`
 --
 
-INSERT INTO `property_details` (`id`, `house_no`, `street`, `area`, `thana`, `district`, `floor`, `room`, `price`, `status`, `image`, `owner_id`, `user_id`) VALUES
-(17, '500', '1', 'nill', 'lalbagh', 'dhaka', '5', '2', 5000, 'Booked', '4324.jpg', 2, 6),
-(18, '701', '1', 'azimpur', 'lalbagh', 'dhaka', '5', '2', 5000, 'Booked', '99331.jpg', 2, 6),
-(19, '500', '1', 'lalbagh', 'lalbagh', 'dhaka', '5', '2', 5000, 'Booked', '11053.jpg', 2, 6),
-(20, '800', '2', 'azimpur', 'lalbagh', 'dhaka', '5', '2', 5000, 'Newly Added', '29271.jpg', 2, 6),
-(21, '900', '5', 'nill', 'lalbagh', 'dhaka', '5', '2', 5000, 'Someone Interested', '62454.jpg', 2, NULL),
-(22, '90', '1', 'nill', 'lalbagh', 'dhaka', '5', '2', 5000, 'Newly Added', '39982.jpg', 2, NULL),
-(23, '9', '1', 'chawkbazar', 'lalbagh', 'dhaka', '4', '4', 5000, 'Newly Added', '47144.jpg', 2, 6);
+INSERT INTO `property_details` (`id`, `house_no`, `street`, `area`, `thana`, `district`, `floor`, `room`, `price`, `status`, `image`, `approve`, `owner_id`, `user_id`) VALUES
+(17, '500', '1', 'nill', 'lalbagh', 'dhaka', '5', '2', 5000, 'Booked', '4324.jpg', 'yes', 2, 6),
+(18, '701', '1', 'azimpur', 'lalbagh', 'dhaka', '5', '2', 5000, 'Booked', '99331.jpg', 'yes', 2, 6),
+(19, '500', '1', 'polashi', 'lalbagh', 'dhaka', '5', '2', 5000, 'Booked', '11053.jpg', 'yes', 2, 6),
+(20, '800', '2', 'azimpur', 'lalbagh', 'dhaka', '5', '2', 5000, 'Someone Interested', '29271.jpg', 'yes', 2, 6),
+(21, '900', '5', 'nill', 'lalbagh', 'dhaka', '5', '2', 5000, 'Someone Interested', '62454.jpg', 'yes', 2, NULL),
+(22, '90', '1', 'nill', 'lalbagh', 'dhaka', '5', '2', 5000, 'Newly Added', '39982.jpg', 'yes', 2, NULL),
+(23, '9', '1', 'chawkbazar', 'lalbagh', 'dhaka', '4', '4', 5000, 'Newly Added', '47144.jpg', 'yes', 2, 6),
+(24, '500', '1', 'london', 'lalbagh', 'dhaka', '5', '2', 5000, 'Someone Interested', '53411.jpg', 'yes', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -192,25 +202,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `interested_property`
 --
 ALTER TABLE `interested_property`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `property_details`
 --
 ALTER TABLE `property_details`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user`
