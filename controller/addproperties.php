@@ -21,12 +21,13 @@ if (isset($_POST['addproperties'])) {
   	// Get text
   	// image file directory
 	  $target = "../image/".$image3;
-	 // echo $target;
+	  
+	  echo $_POST['map'];
 	  
 
 
 	  //echo $image;
-  if (addproperties($data, $image3)) {
+/*   if (addproperties($data, $image3)) {
 
 	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
 		$msg = "Image uploaded successfully";
@@ -34,10 +35,10 @@ if (isset($_POST['addproperties'])) {
 		$msg = "Failed to upload image";
 	}
 
-echo "<script>location.href='welcome2.php'</script>";
+	echo "<script>location.href='welcome2.php'</script>";
 
 
-  }  
+  }  */ 
 }
 
 else {

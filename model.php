@@ -249,6 +249,22 @@ function property_info(){
     return $rows;
 
     }
+function property_info_admin_page(){
+	$conn = db_conn();
+    $selectQuery = "SELECT property_details.*,owner.email,owner.contact FROM `property_details`INNER JOIN `owner` on property_details.owner_id=owner.id WHERE property_details.approve ='yes'  ORDER BY `id` DESC";
+    try{
+        $stmt = $conn->query($selectQuery);
+
+        
+
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $rows;
+
+    }
 
 function search_properties($data){
 	$conn = db_conn();
@@ -351,6 +367,22 @@ function property_info_owner($id){
 
     }
 
+function property_reject_info_owner($id){
+	$conn = db_conn();
+    $selectQuery = "SELECT * FROM `property_details` WHERE owner_id = '$id' AND approve = 'rejected'";
+    try{
+        $stmt = $conn->query($selectQuery);
+
+        
+
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+
+    }
+
 function property_info_admin(){
 	$conn = db_conn();
     $selectQuery = "SELECT * FROM `property_details` WHERE approve = 'no'";
@@ -429,6 +461,21 @@ function property_info_admin(){
         return true;
     }
     function approved_properties($approved, $p_id){
+        $conn = db_conn();
+        $selectQuery = "UPDATE property_details set approve = ? where  ID = ?";
+        try{
+            $stmt = $conn->prepare($selectQuery);
+            $stmt->execute([
+                $approved, $p_id
+            ]);
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        
+        $conn = null;
+        return true;
+    }
+    function rejected_properties($approved, $p_id){
         $conn = db_conn();
         $selectQuery = "UPDATE property_details set approve = ? where  ID = ?";
         try{
@@ -563,5 +610,57 @@ function property_info_admin(){
                 }
                 $conn = null;
          }
+
+
+
+
+   /*       function delete_properties($p_id){
+            $conn = db_conn();
+            $selectQuery = "INSERT into interested_property (p_details_id, user_id ,owner_id)
+            VALUES (:p_details_id , :user_id, (SELECT owner_id from property_details WHERE id= $p_id ))";
+            
+            try{
+                $stmt = $conn->prepare($selectQuery);
+                $stmt->execute([
+                    ':p_details_id' => $data['p_id'],
+                    ':user_id' => $data['user_id']
+                ]);
+            }catch(PDOException $e){
+                echo $e->getMessage();
+            }
+        
+            $conn = null;
+            return true;
+        }
+         */
+
+
+
+        function delete_properties($p_id){
+            $conn = db_conn();
+            $selectQuery = "DELETE FROM `property_details` WHERE `ID` = ?";
+            try{
+                $stmt = $conn->prepare($selectQuery);
+                $stmt->execute([$p_id]);
+            }catch(PDOException $e){
+                echo $e->getMessage();
+            }
+            $conn = null;
+        
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

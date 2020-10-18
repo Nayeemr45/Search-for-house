@@ -10,7 +10,22 @@ if (isset($_POST['approved'])) {
 	  //echo $image;
    if (approved_properties($approved, $p_id)) {
 
-    echo "Successfully Added";
+    echo "Successfully Approved";
+    echo "<script>location.href='welcome3.php'</script>";
+
+
+  }
+}
+
+if (isset($_POST['reject'])) {
+
+
+    $p_id= $_POST['p_id'];
+    $approved="rejected";
+	  //echo $image;
+   if (rejected_properties($approved, $p_id)) {
+
+    echo "Successfully Rejected";
     echo "<script>location.href='welcome3.php'</script>";
 
 

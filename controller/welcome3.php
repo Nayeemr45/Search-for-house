@@ -8,7 +8,8 @@ if (isset($_SESSION['user_name'])) {
 	try {
         $logged_as = $_SESSION['user_name'];
 
-        $property_info=property_info_admin();
+		$property_info=property_info_admin();
+		$property_info_admin_page= property_info_admin_page();
 
 		require_once '../admin_page.php';
 
