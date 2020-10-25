@@ -7,7 +7,9 @@
 
     <script src="../js/jquery-3.5.1.min.js"></script>
 
-    <script src="../js/edit-user1.js"></script>
+<!--     <script src="../js/edit-user1.js"></script>
+ -->
+
     <!-- Bootstrap file -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -22,15 +24,12 @@
 
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top main_nav">
-      <a class="navbar-brand" href="#"><span style= "color : #ff4a4a">Print</span> solution</a>
+      <a class="navbar-brand" href="#"><span style= "color : #ff4a4a; margin-left:30px;">User</span> Page</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto text-right">
-        <li class="nav-item">
-          <a class="nav-link" href="../how_it_works2.php">How it works</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link log_reg" href="#">Logged in as <span style="color : #ff4a4a;  text-transform: uppercase;"><strong><?php echo $logged_as; ?></strong></span></a>
         </li>
@@ -90,6 +89,16 @@
                   <div class="d-block">
                   <span class="h5">৳<?php echo  $p_info['price'];?></span>
                 </div>
+                <div class="show_map">
+                
+<!--                 <div id="googleMap" style="width: 700px;height:300px;"></div>
+ -->                
+                <input type="hidden" id="latitude" value="<?php echo $p_info['latitude'];?>">
+                <input type="hidden" id="longitude" value="<?php echo $p_info['longitude'];?>">
+
+              </div>
+              <a class="text-inherit" href="../show_map.php?latitude=<?php echo $p_info['latitude'] ?> && longitude=<?php echo $p_info['longitude'] ?>"><span style="color:red;">View Full Size Map</span></a><br>
+
               </div>
 
               <div class="mb-3">
@@ -108,8 +117,7 @@
 
                 <button type="submit"
               
-                <?php if($p_info['status'] =="Booked") {?> disabled="disabled" <?php } ?> 
-             
+                <?php if($p_info['status'] =="Booked") {  ?> disabled="disabled" <?php } ?>             
              <?php foreach ($check_user_id as $i => $check):
               if($check['user_id'] == $user_id and $check['p_details_id'] == $p_info['id']) {?>
 
@@ -122,8 +130,8 @@
  ?>  id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
            
 
-
 </div>
+
           </div>
         </div>
       </li>
@@ -188,6 +196,41 @@
  </div><!-- end contaiber -->
 
 
+
+
+ <script>
+    function initMap() {
+        "use strict"
+        let latitude1 = $('#latitude').val();
+        let longitude1 = $('#longitude').val();
+
+        var latitude2= parseFloat(latitude1);
+        var longitude2= parseFloat(longitude1);
+
+
+console.log(latitude1);
+console.log(longitude1);
+
+console.log(latitude2);
+console.log(longitude2);
+       
+
+    const uluru = { lat: latitude2, lng: longitude2 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("googleMap"), {
+          zoom: 18,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+}
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgEFd1S4iVxaQwAFrRJg5gmtYd3RW2wRc&callback=initMap"></script>
 
  <script type="text/javascript">
            

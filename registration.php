@@ -13,18 +13,18 @@
 
 <div class="container-fluid">
   <div class="main">
-    <div class="nav_bar">
+    <div style="  background-color: #1072e224;"class="nav_bar">
       <div class="logo">
        <img src="image/LOGO1.png" alt="Logo">
        </div>
       <div class="menu">
         <ul>
-           <li><a href="index.php">home</a></li>
-<!--               <li><a href="properties.php">properties</a></li>
+           <li><a style="color:black;font-weight: 600;"href="index.php">home</a></li>
+<!--               <li><a style="color:black;" href="properties.php">properties</a></li>
  -->
 
-                       <li><a href="contact.php">contact</a></li>
-                         <li><a href="about.php">About us</a></li>
+                       <li><a style="color:black;font-weight: 600;"href="contact.php">contact</a></li>
+                         <li><a style="color:black;font-weight: 600; "href="about.php">About us</a></li>
 
         </ul>
       </div>
@@ -41,7 +41,7 @@
 </a>
 
 <div class="second_button">
- <label for="log2">If you are an owner then</label>
+ <label style="color:black;font-weight: 600;"for="log2">If you are an owner then</label><br>
  <a href="registration2.php"><button id="log2" type="button" class="btn btn-secondary btn-lg but_css">Login or Register</button>
 </a>
  </div>
@@ -54,14 +54,14 @@
 <div class="left">
 
 <div class="form-group" id="username_div">
- <label for="user_name">User Name :</label>
+ <label style="color:black;font-weight: 600;"for="user_name">User Name :</label>
  <input type="text" id="username1" name="username" class="form-control" onBlur="checkusernameAvailability()"  placeholder="Enter User Name" >
  <span id="username_error"></span>
  <span id="username-availability-status" style="font-size:12px;"></span>
 </div>
 
 <div class="form-group" id="email_div">
- <label for="email">Email :</label>
+ <label style="color:black;font-weight: 600;"for="email">Email :</label>
  <input type="email" id="email1" name="email" class="form-control" onBlur="checkemailAvailability()"  placeholder="Enter Email" >
  <span id="email_error"></span>
  <span id="user-email-availability-status" style="font-size:12px;"></span>
@@ -69,7 +69,7 @@
 </div>
 
 <div class="form-group" id="password_div">
- <label for="password">Password :</label>
+ <label style="color:black;font-weight: 600;" for="password">Password :</label>
  <input type="password" id="password1" name="password" class="form-control"  placeholder="Enter Password" >
  <span id="password_error"></span>
 </div>
@@ -77,23 +77,23 @@
 </div><!-- end left -->
 <div class="right">
  <div class="form-group" id="contact_no_div">
-   <label for="contact">Contact :</label>
+   <label style="color:black;font-weight: 600;" for="contact">Contact :</label>
    <input type="text" id="contact_no1" name="contact_no" class="form-control"  placeholder="Enter mobile no" >
    <span id="contact_no_error"></span>
  </div>
 
  <div class="form-group type" id="type_div">
-<label for="Type">Select Type :</label>
+<label style="color:black;font-weight: 600;" for="Type">Select Type :</label>
 <select class="form-control"  id="type1" name="type">
 <option value=""></option>
-<option value="bachelor">Bachelor</option>
-<option value="family">Family</option>
+<option style="color:black;font-weight: 600;" value="bachelor">Bachelor</option>
+<option style="color:black;font-weight: 600;"value="family">Family</option>
 </select>
 <span id="type_error"></span>
 </div>
 
 <div class="form-group" id="members_div">
-<label for="Type">Select member :</label>
+<label style="color:black;font-weight: 600;"for="Type">Select member :</label>
  <select class="form-control"  id="members" name="members">
  <option value=""></option>
 <option value="1-3">1-3</option>
@@ -121,11 +121,11 @@
 <div class="form-group">
 
 <div class="form-group">
- <label for="user_name">User Name :</label>
+ <label style="color:black;font-weight: 600;"for="user_name">User Name :</label>
  <input type="text" id="username" name="username" class="form-control"  placeholder="Enter User Name" required>
 </div>
 <div class="form-group">
- <label for="password">Password :</label>
+ <label style="color:black;font-weight: 600;"for="password">Password :</label>
  <input type="password" id="password" name="password" class="form-control"  placeholder="Enter Password" required>
 </div>
 <div class="but">

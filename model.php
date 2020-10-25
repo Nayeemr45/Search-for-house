@@ -44,8 +44,8 @@ VALUES (:name, :email, :password, :contact)";
 }
 function addproperties($data,$image){
     $conn = db_conn();
-    $selectQuery = "INSERT into property_details (house_no,street,area,thana,district,floor,room,price,image,owner_id)
-VALUES (:house_no, :street, :area, :thana,:district, :floor, :room, :price, :image, :owner_id)";
+    $selectQuery = "INSERT into property_details (house_no,street,area,thana,district,floor,room,price,image,latitude,longitude,owner_id)
+VALUES (:house_no, :street, :area, :thana,:district, :floor, :room, :price, :image, :latitude, :longitude, :owner_id)";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([
@@ -58,8 +58,12 @@ VALUES (:house_no, :street, :area, :thana,:district, :floor, :room, :price, :ima
             ':room' => $data['room'],
             ':price' => $data['price'],
             ':image' => $image,
+            ':latitude' => $data['latitude'],
+            ':longitude' => $data['longitude'],
             ':owner_id' => $data['id']
         ]);
+        /* $last_id = $conn->lastInsertId();
+        return $last_id; */
     }catch(PDOException $e){
         echo $e->getMessage();
     }
@@ -272,35 +276,8 @@ function search_properties($data){
     try{
         $stmt = $conn->query($selectQuery);
 
-        //$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $count=$stmt->rowCount();
-        if($count > 0)
-        {
-         $output .= '
-          <div class="table-responsive">
-           <table class="table table bordered">
-            <tr>
-             <th>Customer Name</th>
-             <th>Address</th>
-             <th>City</th>
-             <th>Postal Code</th>
-             <th>Country</th>
-            </tr>
-         ';
-         while($row = mysqli_fetch_array($result))
-         {
-          $output .= '
-           <tr>
-            <td>'.$row["CustomerName"].'</td>
-            <td>'.$row["Address"].'</td>
-            <td>'.$row["City"].'</td>
-            <td>'.$row["PostalCode"].'</td>
-            <td>'.$row["Country"].'</td>
-           </tr>
-          ';
-         }
-         echo $output;
-        } 
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      
 
     }catch(PDOException $e){
         echo $e->getMessage();
@@ -308,6 +285,33 @@ function search_properties($data){
                  return $rows;
 
     }
+function image($p_id){
+	$conn = db_conn();
+    $selectQuery = "SELECT `image` FROM `property_details` WHERE id = $p_id ";
+    try{
+        $stmt = $conn->query($selectQuery);
+        $count=$stmt->rowCount();
+
+
+        if($count > 0)
+    {
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+           
+            $img["image"] =$row['image'];
+            
+        }
+
+    }
+   
+        return $img["image"];
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+
+    $conn = null;
+    return true;
+}
 
 
 
@@ -353,7 +357,7 @@ function show_interested_people($owner_id){
    
 function property_info_owner($id){
 	$conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` WHERE owner_id = '$id'";
+    $selectQuery = "SELECT * FROM `property_details` WHERE owner_id = '$id' AND approve = 'yes'";
     try{
         $stmt = $conn->query($selectQuery);
 
@@ -429,6 +433,21 @@ function property_info_admin(){
    
 
 
+/*     function addproperties($latitude, $longitude, $p_id){
+        $conn = db_conn();
+        $selectQuery = "UPDATE property_details set latitude = ? ,  longitude = ? where  ID = ?";
+        try{
+            $stmt = $conn->prepare($selectQuery);
+            $stmt->execute([
+                $latitude, $longitude, $p_id
+            ]);
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+        
+        $conn = null;
+        return true;
+    } */
     function change_status($status, $p_id){
         $conn = db_conn();
         $selectQuery = "UPDATE property_details set status = ? where  ID = ?";

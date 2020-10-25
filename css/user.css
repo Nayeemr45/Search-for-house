@@ -159,3 +159,7 @@ thead{
   border: 1px solid white !important;
   border-radius: 5px;
 }
+
+.show_map a{
+  margin-left: 400px !important;
+}

@@ -18,13 +18,13 @@
          </div>
         <div class="menu">
           <ul>
-             <li><a href="index.php">home</a></li>
+             <li><a style="color:black;font-weight: 600;"href="index.php">home</a></li>
 <!--                 <li><a href="properties.php">properties</a></li>
  -->
 
-                         <li><a href="contact.php">contact</a></li>
-                           <li><a href="about.php">About us</a></li>
-                           <li id="sbutton"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a href="registration.php">login or sign up</a></li>
+                         <li ><a style="color:black;font-weight: 600;" href="contact.php">contact </a></li>
+                           <li><a style="color:black;font-weight: 600;"href="about.php">About us</a></li>
+                           <li id="sbutton"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a style="color:black;font-weight: 600;"href="registration.php">login or sign up</a></li>
 
 
           </ul>
@@ -32,7 +32,7 @@
 
      </div>
       <div class="heading">
-      <h1 style="color:white">Find Your Perfect Place</h1>
+      <h1 style="color:black">Find Your Perfect Place</h1>
     </div>
     <div class="search-box">
 
@@ -40,17 +40,17 @@
       <form action="controller/search_properties2.php" METHOD="POST" class="form-inline">
       <input class="form-control mr-sm-2" type="search" id="search" name="search" placeholder="Search" autocomplete="off" size=50 aria-label="Search">
       <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-      <button name="search_properties"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
+      <button style="color:black;"name="search_properties"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
       </form>
-      </nav>  
-      
+      </nav>
+
       <div class="col-md-5" style="position: relative;margin-top: -8px;margin-left: 1px;">
         <div class="list-group" id="show-list">
           <!-- Here autocomplete list will be display -->
         </div>
       </div>
 
-      
+
     </div><!-- end search-box -->
 
     </div>

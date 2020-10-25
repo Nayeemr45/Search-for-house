@@ -12,18 +12,18 @@
 
 <div class="container-fluid">
   <div class="main">
-    <div class="nav_bar">
+    <div  style="  background-color: #1072e224;" class="nav_bar">
       <div class="logo">
        <img src="image/LOGO1.png" alt="Logo">
        </div>
       <div class="menu">
         <ul>
-           <li><a href="index.php">home</a></li>
+           <li><a style="color:black;font-weight: 600;"href="index.php">home</a></li>
 <!--               <li><a href="properties.php">properties</a></li>
  -->
-                       <li><a href="contact.php">contact</a></li>
-                         <li><a href="about.php">About us</a></li>
-                         <li id="sbutton"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a href="registration.php">login or sign up</a></li>
+                       <li><a style="color:black;font-weight: 600;"href="contact.php">contact</a></li>
+                         <li><a style="color:black;font-weight: 600;" href="about.php">About us</a></li>
+                         <li id="sbutton"style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a style="color:black;font-weight: 600;"href="registration.php">login or sign up</a></li>
 
 
         </ul>
@@ -55,27 +55,27 @@
 <div class="left">
 
 <div class="form-group" id="ownername_div">
- <label for="name">Owner Name :</label>
+ <label style="color:black;font-weight: 600;"for="name">Owner Name :</label>
  <input type="text" id="ownername1" name="name" class="form-control" onBlur="checkownernameAvailability()" placeholder="Enter Owner Name" >
  <span id="ownername_error"></span>
  <span id="ownername-availability-status" style="font-size:12px;"></span>
 </div>
 
 <div class="form-group" id="email_div">
-  <label for="email">Email :</label>
+  <label style="color:black;font-weight: 600;"for="email">Email :</label>
   <input type="email" id="email1" name="email" class="form-control" onBlur="checkemailAvailability()"  placeholder="Enter Email" >
  <span id="email_error"></span>
  <span id="owner-email-availability-status" style="font-size:12px;"></span>
 </div>
 
  <div class="form-group" id="password_div">
-  <label for="password">Password :</label>
+  <label style="color:black;font-weight: 600;"for="password">Password :</label>
   <input type="password" id="password1" name="password" class="form-control"  placeholder="Enter Password" >
   <span id="password_error"></span>
  </div>
 
  <div class="form-group" id="contact_no_div">
-   <label for="contact">Contact :</label>
+   <label style="color:black;font-weight: 600;"for="contact">Contact :</label>
    <input type="text" id="contact_no1" name="contact_no" class="form-control"  placeholder="Enter mobile no" >
    <span id="contact_no_error"></span>
  </div>
@@ -95,13 +95,13 @@
 
 <div class="login_css">
 <form action="controller/User_login.php" method="POST" enctype="multipart/form-data" id="type>
- <p><span style="font-size:24px; color: black;"><strong><p style="font-size:30px; color:#42ecf5">Owner login:</p></strong></span></p>
+ <p><span style="font-size:24px; color: black;"><strong><p style="font-size:30px; color:black;">Owner login:</p></strong></span></p>
 <div class="form-group">
- <label for="name">Owner Name :</label>
+ <label style="color:black;font-weight: 600;" for="name">Owner Name :</label>
  <input type="text" name="name" class="form-control"  placeholder="Enter User Name" required>
 </div>
 <div class="form-group">
- <label for="password">Password :</label>
+ <label style="color:black;font-weight: 600;"for="password">Password :</label>
  <input type="password" name="password"  class="form-control"  placeholder="Enter Password" required>
 </div>
 <div class="but">

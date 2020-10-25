@@ -94,20 +94,21 @@
           });
 
 function map2(latitude,longitude){
+
     console.log(latitude); 
     console.log(longitude);
 
-    const myLatLng = { lat: latitude, lng: longitude };
-    
-  const map = new google.maps.Map(document.getElementById("googleMap"), {
-    zoom: 15,
-    center: myLatLng,
-  });
-  new google.maps.Marker({
-    position: myLatLng,
-    map,
-    title: "Hello World!",
-  });
+    const uluru = { lat: latitude, lng: longitude };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("googleMap"), {
+          zoom: 18,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
 }
 
 
@@ -149,13 +150,15 @@ function map2(latitude,longitude){
         <input type="file" name="image">      
       </div>
 
+
+
     </div>
 
     <input type="hidden" name="map" value='<?php echo $ab; ?>'>
 
   <input type="hidden" name="id" value="<?php echo $owner_id; ?>">
    <div class="but">
-   <button type="submit" name = "addproperties" class="btn btn-primary">Save</button>
+   <button type="submit"  name = "addproperties" class="btn btn-primary" style="margin-bottom:80px">Next</button>
    </div>
    </div><!-- end right -->
 </form>
@@ -360,7 +363,6 @@ function map2(latitude,longitude){
 
           </script>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
