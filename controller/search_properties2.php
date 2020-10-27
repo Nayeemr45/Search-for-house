@@ -11,9 +11,7 @@ if(isset($_POST['search_properties'])){
 
     require_once '../search_properties2.php';
 
-       // echo "<script>location.href='../search_properties.php'</script>";
-    
-      
+       // echo "<script>location.href='../search_properties.php'</script>";    
 }
     
    

@@ -136,3 +136,22 @@ padding-top: 25px;
   z-index: 2;
   color: white;
 }
+
+.src{
+  border-radius: 0px !important;
+  border: 5px solid #0b2742;
+}
+
+
+select.form-control:not([size]):not([multiple]) {
+   height: calc(2.65rem + 2px); 
+}
+.search-sec{
+/*   border: 5px solid #0b2742;
+ */  background-color: #0b2742;
+}
+.row {
+  margin-right: -53px !important;
+  margin-bottom: 5px;
+
+}

@@ -74,9 +74,24 @@
             <div class="card-body">
               <div class="mb-2">
                 <a class="d-inline-block text-body small font-weight-bold mb-1" href="#"><?php echo  $p_info['house_no'];?>/<?php echo  $p_info['street'];?>,<?php echo  $p_info['area'];?>,<?php echo  $p_info['thana'];?>,<?php echo  $p_info['district'];?></a>
-                <span class="badge badge-success badge-pill ml-1" <?php if($p_info['status'] =="Booked") {?> style="background-color:red;" <?php } ?> <?php if($p_info['status'] =="Someone Interested") {?> style="background-color:yellow; color:black;" <?php } ?> >
+                <span class="badge badge-success badge-pill ml-1" <?php if($p_info['status'] =="Booked") {?> style="background-color:red;" <?php } ?> <?php if($p_info['status'] =="Someone Interested") { ?> style="background-color:yellow; color:black;" <?php } ?> >
                   <?php 
-                  echo $p_info['status'];
+                /*   if($p_info['status']=="Someone Interested"){
+                    if($interested_people>0){
+                      echo $interested_people;
+                      echo " ";
+                      echo "People Interested";
+                    }
+                    else
+                    {
+                      echo $p_info['status'];
+                    }                   
+                  }
+                  else */
+                 
+                    echo $p_info['status'];
+                  
+                  
                   ?>
                   </span>
                 <span class="d-block font-size-1">
@@ -111,7 +126,7 @@
                     <i class="far fa-star text-muted"></i>
                   </div>
                 </a>
-              </div>
+              </div> 
                 <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                 <input type="hidden" name="p_id" value="<?php echo $p_info['id']; ?>">
 

@@ -291,17 +291,12 @@ function image($p_id){
     try{
         $stmt = $conn->query($selectQuery);
         $count=$stmt->rowCount();
-
-
         if($count > 0)
     {
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-        {
-           
-            $img["image"] =$row['image'];
-            
+        {   
+            $img["image"] =$row['image'];   
         }
-
     }
    
         return $img["image"];
@@ -309,6 +304,28 @@ function image($p_id){
         echo $e->getMessage();
     }
 
+    $conn = null;
+    return true;
+}
+
+function show_someone_interested_people(){
+	$conn = db_conn();
+    $selectQuery = "SELECT p_details_id FROM `interested_property` WHERE confirm = 'no' ";
+    try{
+        $stmt = $conn->query($selectQuery);
+       
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      /*   $count=$stmt->rowCount();
+        if($count > 0)
+    {
+        $number=$count;
+    }   */
+
+        return $rows;
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
     $conn = null;
     return true;
 }
