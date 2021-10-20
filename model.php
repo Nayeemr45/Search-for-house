@@ -631,10 +631,10 @@ function check_email($email)
 
         $count = $stmt->rowCount();
         if ($count > 0) {
-            echo "<span style='color:white;''>" . "Email already exists" . "</span>";
+            echo "<span style='color:red;''>" . "Email already exists" . "</span>";
             echo "<script>$('#submit').prop('disabled',true);</script>";
         } else {
-            echo "<span style='color:white;''>" . "Email available for Registration" . "</span>";
+            echo "<span style='color:red;''>" . "Email available for Registration" . "</span>";
             echo "<script>$('#submit').prop('disabled',false);</script>";
         }
 
@@ -657,10 +657,10 @@ function check_user_name($user_name)
 
         $count = $stmt->rowCount();
         if ($count > 0) {
-            echo "<span style='color:white;''>" . "User Name already exists" . "</span>";
+            echo "<span style='color:red;''>" . "User Name already exists" . "</span>";
             echo "<script>$('#submit').prop('disabled',true);</script>";
         } else {
-            echo "<span style='color:white;''>" . "User Name available for Registration" . "</span>";
+            echo "<span style='color:red;''>" . "User Name available for Registration" . "</span>";
             echo "<script>$('#submit').prop('disabled',false);</script>";
         }
 
@@ -682,10 +682,10 @@ function check_email2($email)
 
         $count = $stmt->rowCount();
         if ($count > 0) {
-            echo "<span style='color:white;''>" . "Email already exists" . "</span>";
+            echo "<span style='color:red;''>" . "Email already exists" . "</span>";
             echo "<script>$('#submit').prop('disabled',true);</script>";
         } else {
-            echo "<span style='color:white;''>" . "Email available for Registration" . "</span>";
+            echo "<span style='color:red;''>" . "Email available for Registration" . "</span>";
             echo "<script>$('#submit').prop('disabled',false);</script>";
         }
 
@@ -709,10 +709,10 @@ function check_owner_name($owner_name)
 
         $count = $stmt->rowCount();
         if ($count > 0) {
-            echo "<span style='color:white;''>" . "Owner Name already exists" . "</span>";
+            echo "<span style='color:red;''>" . "Owner Name already exists" . "</span>";
             echo "<script>$('#submit').prop('disabled',true);</script>";
         } else {
-            echo "<span style='color:white;''>" . "Owner Name available for Registration" . "</span>";
+            echo "<span style='color:red;''>" . "Owner Name available for Registration" . "</span>";
             echo "<script>$('#submit').prop('disabled',false);</script>";
         }
 

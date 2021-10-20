@@ -11,7 +11,7 @@
   <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  -->
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
           <li><a style="color:black;font-weight: 600;" href="contact.php">contact </a></li>
           <li><a style="color:black;font-weight: 600;" href="about.php">About us</a></li>
-          <li id="sbutton" style='border:2px solid green;padding:5px 5px;border-radius:5px;'><a style="color:black;font-weight: 600;" href="registration.php">login or sign up</a></li>
+          <li id="sbutton" style='  background: #0062cc;border-radius:5px;padding:8px 8px;'><a style="color:white;font-weight: 600;padding:8px 8px;" href="registration.php">login or sign up</a></li>
 
 
         </ul>
