@@ -45,7 +45,7 @@
     <div class="part_1">
     <div class="container">
     <ul class="list-unstyled">
-      <!-- Products -->
+      <!-- Property -->
       <?php 
       foreach ($property_info_admin_page as $i => $p_info):?>
     <form action="delete_property.php" method="POST">                         
@@ -98,9 +98,9 @@
         </div>
       </li>
       </form>
-      <!-- End Products -->
+      <!-- End Property -->
       <?php endforeach; ?>
-      <!-- End Products -->
+      <!-- End Property -->
     </ul>
   </div> 
     </div><!-- end part-1 -->
@@ -108,7 +108,7 @@
     <div class="container">
 
     <ul class="list-unstyled">
-      <!-- Products -->
+      <!-- Property -->
       <?php 
       foreach ($property_info as $i => $p_info):?>
     <form action="approve_property.php" method="POST">                         
@@ -155,9 +155,9 @@
         </div>
       </li>
       </form>
-      <!-- End Products -->
+      <!-- End Property -->
       <?php endforeach; ?>
-      <!-- End Products -->
+      <!-- End Property -->
     </ul>
   </div>
       </div><!-- end part-2 -->

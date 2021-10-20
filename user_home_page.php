@@ -196,10 +196,10 @@
         <div class="search-box">
 
         <nav class="navbar navbar-dark bg-success justify-content-between">
-    <form action="search_properties.php" METHOD="POST" class="form-inline">
+    <form action="search_properties.php" method="POST" class="form-inline">
       <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" size=50 aria-label="Search">
       <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" id="">
-      <button name="search_properties"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
+      <button name="search_properties1"  class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
     </form>
   </nav>    
 </div>

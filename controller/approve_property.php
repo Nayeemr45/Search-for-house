@@ -8,6 +8,8 @@ if (isset($_POST['approved'])) {
     $p_id= $_POST['p_id'];
     $approved="yes";
 	  //echo $image;
+
+    
    if (approved_properties($approved, $p_id)) {
 
     echo "Successfully Approved";

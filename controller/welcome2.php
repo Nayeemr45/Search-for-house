@@ -20,6 +20,8 @@ if (isset($_SESSION['name'])) {
 		$property_reject_info_owner=property_reject_info_owner($owner_id);
 
         $shows=show_interested_people($owner_id);
+        print_r($shows);
+        // $shows=show_interested_people($owner_id);
         require_once '../owner_home_page.php';
 
     } catch (Exception $ex) {
@@ -36,6 +38,3 @@ else{
     echo "<br><a href='logout.php'>Go Home</a><br>";
 
 }
-
-
- ?>
