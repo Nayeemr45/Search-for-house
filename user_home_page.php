@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>User</title>
 
   <script src="../js/jquery-3.5.1.min.js"></script>
 
@@ -133,10 +133,10 @@
                         <input type="hidden" name="p_id" value="<?php echo $p_info['id']; ?>">
 
                         <button type="submit" <?php if ($p_info['status'] == "Booked") {  ?> disabled="disabled" <?php } ?> <?php foreach ($check_user_id as $i => $check) :
-                                                                                                                            if ($check['user_id'] == $user_id and $check['p_details_id'] == $p_info['id']) { ?> disabled="disabled" <?php }
-                                                                                                                          endforeach;
+                                                                                                                              if ($check['user_id'] == $user_id and $check['p_details_id'] == $p_info['id']) { ?> disabled="disabled" <?php }
+                                                                                                                                                                                                                                endforeach;
 
-                                                                                                                    ?> id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
+                                                                                                                                                                                                                                    ?> id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
 
 
                       </div>

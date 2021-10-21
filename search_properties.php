@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Search Property</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <!--     <link rel="stylesheet" href="../css/theme.css">
@@ -44,7 +44,7 @@
                       </span>
                     </span>
                     <div class="d-block">
-                      <span class="h5">৳<?php echo  $p_info['price'],$p_info['status']; ?></span>
+                      <span class="h5">৳<?php echo  $p_info['price'], $p_info['status']; ?></span>
                     </div>
                   </div>
 
@@ -65,9 +65,9 @@
                   <button type="submit" <?php
                                         if ($p_info['status'] == "Booked") { ?> disabled="disabled" <?php } ?> <?php foreach ($check_user_id as $i => $check) :
                                                                                                                   if ($check['user_id'] == $p_info['user_id'] and $check['p_details_id'] == $p_info['id']) { ?> disabled="disabled" <?php }
-                                                                                                                                                                                                endforeach;
+                                                                                                                                                                                                                                endforeach;
 
-                                                                                                                                                                                                    ?> id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
+                                                                                                                                                                                                                                    ?> id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
                   <!--               <button type="submit" <?php if ($p_info['status'] == "Booked") { ?> disabled="disabled" <?php } ?><?php if ($check_user_id == $user_id && $check_p_id == $p_info['id']) { ?> disabled="disabled" <?php } ?>  id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>
      -->
                 </div>
