@@ -109,7 +109,7 @@
             </div>
           </form>
         </div>
-        <div class="col-md-5" style="position: relative;margin-top: -8px;margin-left: 1px;">
+        <div class="col-md-12" id="background" style="position: relative;margin-left: 1px;padding-bottom: 1rem;">
           <div class="list-group" id="show-list">
             <!-- Here autocomplete list will be display -->
           </div>
@@ -162,16 +162,22 @@
             },
             success: function(response) {
               $("#show-list").html(response);
+              document.getElementById('show-list').style.display = "flex";
+              document.getElementById('background').style.marginTop = "100px";
             },
           });
         } else {
           $("#show-list").html("");
+          document.getElementById('show-list').style.display = "none";
+          document.getElementById('background').style.marginTop = "0px";
         }
       });
       // Set searched text in input field on click of search button
       $(document).on("click", "a", function() {
         $("#search").val($(this).text());
         $("#show-list").html("");
+          document.getElementById('background').style.marginTop = "0px";
+        document.getElementById('show-list').style.display = "none";
       });
     });
   </script>

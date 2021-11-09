@@ -421,7 +421,7 @@ function find_interested_people($p_id, $owner_id)
 function autosearch($data)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT area FROM `property_details` Where area LIKE :area LIMIT 3";
+    $selectQuery = "SELECT area FROM `property_details` Where area LIKE :area LIMIT 10";
     try {
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute(['area' => '%' . $data . '%']);
