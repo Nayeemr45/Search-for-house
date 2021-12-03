@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search Property</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/select2.min.css">
@@ -77,13 +79,49 @@
                         ?>
                       </span>
                     </span><br>
+                    <span><?php
+                        echo $p_info['rating'];
+                        if($p_info['rating']){
+                            if(is_float(5-$p_info['rating'])){
+                              $float_val = 5-$p_info['rating'];
+                              $val = strval($float_val);
+                              if(!empty(explode(".", $float_val)[1])){
+                                $val2 = explode(".", $float_val)[1];
+                                // print_r($val2);
+                                // print_r "val2----".$val2;
+                              }else{
+                                $val2 = 0;
+                              }
+                              for($i=1;$i<=$p_info['rating'];$i++){
+                                  echo '<i class="fa fa-star" style="color:orange"></i>';
+                              }
+                              if($val2 === '5'){
+                                for($i=1;$i<=1;$i++){
+                                  echo '<i class="fa fa-star-half-o"" style="color:orange"></i>';
+                                }
+                              }
+                              for($i=1;$i<=5-$p_info['rating'];$i++){
+                                echo '<i class="fa fa-star-o"" style="color:orange"></i>';
+                              }
+                            }
+                          
+                        }
+                        else{
+                          echo "<i class='fa fa-star' style='color:orange'></i>" ;
+                        }
+                        ?>
+                        </span>
+
+                        <!-- <i class="fa fa-star" style="color:orange"></i>
+                        <i class="fa fa-star-o" style="color:orange"></i>
+                        <i class="fa fa-star-half-o" style="color:orange"></i> -->
                     <div class="d-block">
                       <span class="h5">৳<?php echo  $p_info['price']; ?></span>
                     </div>
                   </div>
 
                   <div class="mb-3">
-                    <a class="d-inline-flex align-items-center small" href="#">
+                    <!-- <a class="d-inline-flex align-items-center small" href="#">
                       <div class="text-warning mr-2">
                         <i class="far fa-star text-muted"></i>
                         <i class="far fa-star text-muted"></i>
@@ -91,7 +129,7 @@
                         <i class="far fa-star text-muted"></i>
                         <i class="far fa-star text-muted"></i>
                       </div>
-                    </a>
+                    </a> -->
                   </div>
                   <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                   <input type="hidden" name="p_id" value="<?php echo $p_info['id']; ?>">

@@ -19,11 +19,47 @@ $data['floor'] = $_POST['floor'];
 $data['room'] = $_POST['room'];
 $data['price'] = $_POST['price'];
 $data['id'] = $_POST['id'];
-
+// Image
 $image_name = $_POST['image_name'];
+// ratings
+$data['water_supply'] = $_POST['water_supply'];
+$data['gas_supply'] = $_POST['gas_supply'];
+$data['electricity_supply'] = $_POST['electricity_supply'];
+$data['security_guard'] = $_POST['security_guard'];
+$data['security_camera'] = $_POST['security_camera'];
+$data['garage'] = $_POST['garage'];
+
+$rating = 0;
+if($data['water_supply'] === 'wasa'){
+	$rating += 0.5;
+}
+if($data['water_supply'] === 'deep'){
+	$rating += 0.5;
+}
+if($data['water_supply'] === 'both'){
+	$rating += 1;
+}
+if($data['gas_supply'] === 'yes'){
+  $rating += 1;
+}
+if($data['electricity_supply'] === 'yes'){
+  $rating += 1;
+}
+if($data['security_guard'] === 'yes'){
+  $rating += 0.5;
+}
+if($data['security_camera'] === 'yes'){
+  $rating += 0.5;
+}
+if($data['garage'] === 'yes'){
+  $rating += 1;
+}
 
 
- addproperties($data, $image_name);
+
+
+
+ addproperties($data, $image_name, $rating);
 /*
 if (move_uploaded_file($image_tmp, $image_target)) {
     $msg = "Image uploaded successfully";
@@ -32,35 +68,5 @@ if (move_uploaded_file($image_tmp, $image_target)) {
     }
   */
 //$id= $_POST['id'];
-
-/*
-echo "longitude :" .$image_name;
-echo "house_no :" .$data['house_no'];
-* echo "street :" .$street;
-echo "area :" .$area;
-echo "thana :" .$thana;
-echo "district :" .$district;
-echo "floor :" .$floor;
-echo "room :" .$room;
-echo "image_name :" .$image_name;
-echo "image_target :" .$image_target; */
-
-
-//add_location($latitude, $longitude, $id);
-
-//echo "<script>location.href='welcome2.php'</script>";
-
-//echo "latitude :".$latitude ."\n";
-//echo "longitude :" .$longitude;
-
-//header('Location: welcome2.php');
-
-//header("Location: welcome2.php");
-
-
-
-
-
-
 
 ?>

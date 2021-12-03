@@ -63,6 +63,12 @@
   <input type="hidden" id="id" name="map" value='<?php echo   $data['id']; ?>'>
   <input type="hidden" id="image_name" name="map" value='<?php echo   $image3 ?>'>
 
+  <input type="hidden" id="water_supply" name="map" value='<?php echo   $data['water_supply']; ?>'>
+  <input type="hidden" id="gas_supply" name="map" value='<?php echo   $data['gas_supply']; ?>'>
+  <input type="hidden" id="electricity_supply" name="map" value='<?php echo   $data['electricity_supply']; ?>'>
+  <input type="hidden" id="security_guard" name="map" value='<?php echo   $data['security_guard']; ?>'>
+  <input type="hidden" id="security_camera" name="map" value='<?php echo   $data['security_camera']; ?>'>
+  <input type="hidden" id="garage" name="map" value='<?php echo   $data['garage']; ?>'>
 
 
 
@@ -133,6 +139,13 @@
           var price = $('#price').val();
           var id = $('#id').val();
           var image_name = $('#image_name').val();
+
+          var water_supply = $('#water_supply').val();
+          var gas_supply = $('#gas_supply').val();
+          var electricity_supply = $('#electricity_supply').val();
+          var security_guard = $('#security_guard').val();
+          var security_camera = $('#security_camera').val();
+          var garage = $('#garage').val();
           $.ajax({
             url: 'add_owner_map.php',
             type: 'POST',
@@ -148,7 +161,13 @@
               room: room,
               price: price,
               id: id,
-              image_name: image_name
+              image_name: image_name,
+              water_supply: water_supply,
+              gas_supply: gas_supply,
+              electricity_supply: electricity_supply,
+              security_guard: security_guard,
+              security_camera: security_camera,
+              garage: garage,
             },
             success: function(response) {
               //alert(response);

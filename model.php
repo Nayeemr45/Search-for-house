@@ -44,10 +44,11 @@ VALUES (:name, :email, :password, :contact)";
     $conn = null;
     return true;
 }
-function addproperties($data, $image)
+function addproperties($data, $image, $rating)
 {
+    echo "<script>alert('addproperties')</script>";
     $conn = db_conn();
-    $selectQuery = "INSERT into property_details (house_no,street,area,thana,district,floor,room,price,image,latitude,longitude,owner_id)
+    $selectQuery = "INSERT into property_details(house_no,street,area,thana,district,floor,room,price,image,latitude,longitude,owner_id)
 VALUES (:house_no, :street, :area, :thana,:district, :floor, :room, :price, :image, :latitude, :longitude, :owner_id)";
     try {
         $stmt = $conn->prepare($selectQuery);
@@ -65,8 +66,32 @@ VALUES (:house_no, :street, :area, :thana,:district, :floor, :room, :price, :ima
             ':longitude' => $data['longitude'],
             ':owner_id' => $data['id']
         ]);
-        /* $last_id = $conn->lastInsertId();
-        return $last_id; */
+        $last_id = $conn->lastInsertId();
+        $count=$stmt->rowCount();
+        if($count > 0)
+    {   
+        $conn2 = db_conn();
+        $selectQuery2 = "INSERT into property_rating_details(property_id, water_supply,gas_supply,electricity_supply,security_guard,security_camera,garage,rating)VALUES (:property_id, :water_supply, :gas_supply, :electricity_supply, :security_guard, :security_camera, :garage, :rating)";
+        try {
+            $stmt2 = $conn2->prepare($selectQuery2);
+            $stmt2->execute([
+                ':property_id' => $last_id,
+                ':water_supply' => $data['water_supply'],
+                ':gas_supply' => $data['gas_supply'],
+                ':electricity_supply' => $data['electricity_supply'],
+                ':security_guard' => $data['security_guard'],
+                ':security_camera' => $data['security_camera'],
+                ':garage' => $data['garage'],
+                ':rating' => $rating
+            ]);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    else{
+        echo "<script>alert('invalid')</script>";
+    }   
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
@@ -74,7 +99,6 @@ VALUES (:house_no, :street, :area, :thana,:district, :floor, :room, :price, :ima
     $conn = null;
     return true;
 }
-
 
 function interested_properties($data, $p_id)
 {
@@ -124,7 +148,7 @@ function loginUser($data)
                 $_SESSION["username"] = $data["username"];
                 $_SESSION["password"] = $data["password"];
 
-                echo "<script>location.href='welcome.php'</script>";
+                echo "<script>location.href='welcome.php'</>";
             }
         } else {
             echo "<script>alert('uname or pass incorrect!')</script>";
@@ -261,7 +285,7 @@ function property_info_admin_page()
 function search_properties($data)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where area LIKE '$data%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b  Where area LIKE '$data%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 
@@ -274,7 +298,7 @@ function search_properties($data)
 function search_properties_By_area_and_price($data, $price1, $price2)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where area LIKE '$data%' AND price BETWEEN '$price1%' AND '$price2%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b Where area LIKE '$data%' AND price BETWEEN '$price1%' AND '$price2%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 
@@ -287,7 +311,7 @@ function search_properties_By_area_and_price($data, $price1, $price2)
 function search_properties_By_area_and_room($data, $room1, $room2)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where area LIKE '$data%' AND room BETWEEN '$room1%' AND '$room2%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b Where area LIKE '$data%' AND room BETWEEN '$room1%' AND '$room2%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 
@@ -300,7 +324,7 @@ function search_properties_By_area_and_room($data, $room1, $room2)
 function search_properties_By_area_and_price_and_room($data, $price1, $price2, $room1, $room2)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where area LIKE '$data%' AND price BETWEEN '$price1%' AND '$price2%' AND room BETWEEN '$room1%' AND '$room2%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b Where area LIKE '$data%' AND price BETWEEN '$price1%' AND '$price2%' AND room BETWEEN '$room1%' AND '$room2%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 
@@ -313,7 +337,7 @@ function search_properties_By_area_and_price_and_room($data, $price1, $price2, $
 function search_properties_By_price_and_room($price1, $price2, $room1, $room2)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where price BETWEEN '$price1%' AND '$price2%' AND room BETWEEN '$room1%' AND '$room2%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b Where price BETWEEN '$price1%' AND '$price2%' AND room BETWEEN '$room1%' AND '$room2%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 
@@ -326,7 +350,7 @@ function search_properties_By_price_and_room($price1, $price2, $room1, $room2)
 function search_properties_By_price($price1, $price2)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where price BETWEEN '$price1%' AND '$price2%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b Where price BETWEEN '$price1%' AND '$price2%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 
@@ -339,7 +363,7 @@ function search_properties_By_price($price1, $price2)
 function search_properties_By_room($room1, $room2)
 {
     $conn = db_conn();
-    $selectQuery = "SELECT * FROM `property_details` Where room BETWEEN '$room1%' AND '$room2%' AND approve='yes'";
+    $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b Where room BETWEEN '$room1%' AND '$room2%' AND approve='yes' AND a.id=b.property_id";
     try {
         $stmt = $conn->query($selectQuery);
 

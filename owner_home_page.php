@@ -16,9 +16,9 @@
 <style>
   #map {
     position: absolute;
-    top: -70px;
-    left: 204px;
-    bottom: 359px;
+    top: -50px;
+    left: -38px;
+    bottom: 580px;
     right: 0;
   }
 </style>
@@ -44,54 +44,336 @@
       </div>
     </nav>
 
+    <div class="d-flex">
+      <div class="row"></div>
+      <div class="col-2">
+        <div class="sidebar" id="sidebar">
+          <ul>
 
-    <div class="sidebar" id="sidebar">
-      <ul>
-
-        <li><a href="#" id="add" class="btn">
-            <span class="title">Add</span>
-          </a></li>
-        <li><a href="#" id="show" class="btn">
-            <span class="title">Approved</span>
-          </a></li>
-        <li><a href="#" id="reject" class="btn">
-            <span class="title">Rejected</span>
-          </a></li>
-        <li><a href="#" id="request" class="btn">
-            <span class="title">Interested People</span>
-          </a></li>
+            <li><a href="#" id="add" class="btn">
+                <span class="title">Add</span>
+              </a></li>
+            <li><a href="#" id="show" class="btn">
+                <span class="title">Approved</span>
+              </a></li>
+            <li><a href="#" id="reject" class="btn">
+                <span class="title">Rejected</span>
+              </a></li>
+            <li><a href="#" id="request" class="btn">
+                <span class="title">Interested People</span>
+              </a></li>
 
 
-      </ul>
+          </ul>
+        </div>
+      </div>
+        <div class="part_1 col-10">
+          <div class="col-12">
+            <form action="addproperties.php" method="POST" enctype="multipart/form-data" id="type">
+
+              
+                    <div id="map"></div>
+                    <div id="googleMap" style="width: 1000px;height:400px; margin-left: 200px;"></div>
+                      <div class="row mb-5">
+                          <div class="col-4">
+                            <div class="">
+
+                              <div class="form-group">
+
+                                <label for="house_no">House no :</label>
+                                <input type="text" id="house_no" name="house_no" class="form-control" placeholder="Enter house no" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="street">Road/Street/Block :</label>
+                                <input type="text" id="street" name="street" class="form-control" placeholder="Enter Road/Street/Block" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="area">Area :</label>
+                                <input type="text" id="area" name="area" class="form-control" placeholder="Enter Area" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="thana">Thana :</label>
+                                <input type="text" id="thana" name="thana" class="form-control" placeholder="Enter thana" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="district">District :</label>
+                                <input type="text" id="district" name="district" class="form-control" placeholder="Enter District" required>
+                              </div>
+
+                              
+                            </div><!-- end left -->
+                          </div>
+                          <div class="col-4">
+                            <div class="">
+                              <div class="form-group">
+                                <label for="floor">Floor :</label>
+                                <input type="text" id="floor" name="floor" class="form-control" placeholder="Enter floor" required>
+                              </div>
+                              <label for="room">Select Room :</label>
+
+                              <select class="form-control"  id="type" name="room" form="type" >
+
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+
+                              </select>
+                              <div class="price">
+                                <div class="form-group">
+                                  <label for="price">price :</label>
+                                  <input type="text" id="price" name="price" class="form-control" placeholder="Enter Price" required>
+                                </div>
+                                <label for="water_supply">Water Supply :</label>
+                              <select class="form-control"  id="water_supply" name="water_supply">
+                                <option value="wasa">WASA</option>
+                                <option value="deep">Deep Water Pump</option>
+                                <option value="both">Both ( WASA & Deep Water Pump )</option>
+                              </select>
+                                  <br>
+                                  <label for="gas_supply">Gas Supply :</label>
+                                  <div class="form-group">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="gas_supply" id="gas_supply" value="yes" required>
+                                      <label class="form-check-label" for="gas_supply">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="gas_supply" id="gas_supply" value="no" required>
+                                      <label class="form-check-label" for="gas_supply">No</label>
+                                    </div>
+                                  </div>
+
+                              </div>
+
+
+                            </div><!-- end right -->
+                          </div>
+                          <div class="col-4">
+                              <label for="electricity_supply">Electricity Supply :</label>
+                                  <div class="form-group">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="electricity_supply" id="electricity_supply" value="yes" required>
+                                      <label class="form-check-label" for="electricity_supply">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="electricity_supply" id="electricity_supply" value="no" required>
+                                      <label class="form-check-label" for="electricity_supply">No</label>
+                                    </div>
+                                  </div>
+                              <label for="security_guard">Security Guard :</label>
+                                  <div class="form-group">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="security_guard" id="security_guard" value="yes" required>
+                                      <label class="form-check-label" for="security_guard">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="security_guard" id="security_guard" value="no" required>
+                                      <label class="form-check-label" for="security_guard">No</label>
+                                    </div>
+                                  </div>
+                              <label for="security_camera">Security Camera :</label>
+                                  <div class="form-group">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="security_camera" id="security_camera" value="yes" required>
+                                      <label class="form-check-label" for="security_camera">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="security_camera" id="security_camera" value="no" required>
+                                      <label class="form-check-label" for="security_camera">No</label>
+                                    </div>
+                                  </div>
+                              <label for="garage">Garage :</label>
+                                  <div class="form-group">
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="garage" id="garage" value="yes" required>
+                                      <label class="form-check-label" for="garage">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="garage" id="garage" value="no" required>
+                                      <label class="form-check-label" for="garage">No</label>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="price">Add your House Image :</label>
+                                    <input type="file" name="image">
+                                  </div>
+
+                                <input type="hidden" name="map" value='<?php echo $ab; ?>'>
+
+                                <input type="hidden" name="id" value="<?php echo $owner_id; ?>">
+                              <div class="but">
+                                <button type="submit" name="addproperties" class="btn btn-primary" style="margin-bottom:80px">Next</button>
+                              </div>
+                            </div>
+                      <!--  -->
+                      </div>
+            </form>
+          </div>
+      </div>
+        <div class="part_2 col-10">
+          <div class="col-12">
+            <div class="">
+              <ul class="list-unstyled">
+                <!-- Products -->
+                <?php
+                foreach ($property_info_owner as $i => $p_info) : ?>
+                  <form action="interested_property.php" method="POST">
+                    <li class="card border shadow-none mb-3 mb-md-5">
+                      <div class="row no-gutters">
+                        <div class="col-md-4">
+                          <img class="card-img" src="../image/<?php echo  $p_info['image']; ?>" alt="Image Description">
+                        </div>
+
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <div class="mb-2">
+                              <a class="d-inline-block text-body small font-weight-bold mb-1" href="#"><?php echo  $p_info['house_no']; ?>/<?php echo  $p_info['street']; ?>,<?php echo  $p_info['thana']; ?>,<?php echo  $p_info['district']; ?></a>
+                              <span class="d-block font-size-1">
+                                <a class="text-inherit flor-room" href="#">Floor :<?php echo  $p_info['floor']; ?> Room no :<?php echo  $p_info['room']; ?></a>
+                                <span class="badge badge-success badge-pill ml-1" <?php if ($p_info['status'] == "Booked") { ?> style="background-color:red;" <?php } ?> <?php if ($p_info['status'] == "Someone Interested") { ?> style="background-color:yellow; color:black;" <?php } ?>>
+                                  <?php
+                                  echo $p_info['status'];
+                                  ?>
+                                </span>
+                              </span>
+                              <div class="d-block">
+                                <span class="h5">৳<?php echo  $p_info['price']; ?></span>
+                              </div>
+                            </div>
+
+                            <div class="mb-3">
+                              <a class="d-inline-flex align-items-center small" href="#">
+                                <div class="text-warning mr-2">
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </form>
+                  <!-- End Products -->
+                <?php endforeach; ?>
+                <!-- End Products -->
+              </ul>
+            </div>
+          </div><!-- end part-2 -->
+        </div>
+        <div class="part_3 col-10">
+          <div class="col-12">
+            <table class="table table-hover">
+              <thead class="bg-info th">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contact No</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">House No</th>
+                  <th scope="col">House Area</th>
+                  <th scope="col">Thana</th>
+                  <th scope="col">Floor</th>
+                  <th scope="col">ROOM</th>
+                  <th scope="col">Confirm</th>
+                  <th scope="col">Reject</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($shows as $i => $show) : ?>
+                  <tr>
+                    <td><?php echo $show['username'] ?></td>
+                    <td><?php echo $show['email'] ?></td>
+                    <td><?php echo $show['contact_no'] ?></td>
+                    <td><?php echo $show['type'] ?></td>
+                    <td><?php echo $show['house_no'] ?></td>
+                    <td><?php echo $show['area'] ?></td>
+                    <td><?php echo $show['thana'] ?></td>
+                    <td><?php echo $show['floor'] ?></td>
+                    <td><?php echo $show['room'] ?></td>
+                    <td>
+                      <a href="confirm_property.php?id=<?php echo $show['id'] ?> && p_details_id=<?php echo $show['p_details_id'] ?> && owner_id=<?php echo $owner_id ?>">Confirm</a>
+                    </td>
+                    <td>
+                      <a href="not_confirm_property.php?id=<?php echo $show['id'] ?> && p_details_id=<?php echo $show['p_details_id'] ?> && owner_id=<?php echo $owner_id ?>">Reject</a>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="part_4 col-10">
+          <div class="col-12">
+            <div class="">
+              <ul class="list-unstyled">
+                <!-- Products -->
+                <?php
+                foreach ($property_reject_info_owner as $i => $p_info) : ?>
+                  <form action="interested_property.php" method="POST">
+                    <li class="card border shadow-none mb-3 mb-md-5">
+                      <div class="row no-gutters">
+                        <div class="col-md-4">
+                          <img class="card-img" src="../image/<?php echo  $p_info['image']; ?>" alt="Image Description">
+                        </div>
+
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <div class="mb-2">
+                              <a class="d-inline-block text-body small font-weight-bold mb-1" href="#"><?php echo  $p_info['house_no']; ?>/<?php echo  $p_info['street']; ?>,<?php echo  $p_info['thana']; ?>,<?php echo  $p_info['district']; ?></a>
+                              <span class="d-block font-size-1">
+                                <a class="text-inherit flor-room" href="#">Floor :<?php echo  $p_info['floor']; ?> Room no :<?php echo  $p_info['room']; ?></a>
+                                <span class="badge badge-success badge-pill ml-1" <?php if ($p_info['status'] == "Booked") { ?> style="background-color:red;" <?php } ?> <?php if ($p_info['status'] == "Someone Interested") { ?> style="background-color:yellow; color:black;" <?php } ?>>
+                                  <?php
+                                  echo $p_info['status'];
+                                  ?>
+                                </span>
+                              </span>
+                              <div class="d-block">
+                                <span class="h5">৳<?php echo  $p_info['price']; ?></span>
+                              </div>
+                            </div>
+
+                            <div class="mb-3">
+                              <a class="d-inline-flex align-items-center small" href="#">
+                                <div class="text-warning mr-2">
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                  <i class="far fa-star text-muted"></i>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </form>
+                  <!-- End Products -->
+                <?php endforeach; ?>
+                <!-- End Products -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="part_1">
-      <form action="addproperties.php" method="POST" enctype="multipart/form-data" id="type">
-
-        <div id="map"></div>
-        <div id="googleMap" style="width: 1000px;height:400px; margin-left: 200px;"></div>
-
-        <div class="left">
-
-          <div class="form-group">
-
-            <label for="house_no">House no :</label>
-            <input type="text" id="house_no" name="house_no" class="form-control" placeholder="Enter house no" required>
-          </div>
-          <div class="form-group">
-            <label for="street">Road/Street/Block :</label>
-            <input type="text" id="street" name="street" class="form-control" placeholder="Enter Road/Street/Block" required>
-          </div>
-          <div class="form-group">
-            <label for="area">Area :</label>
-            <input type="text" id="area" name="area" class="form-control" placeholder="Enter Area" required>
-          </div>
-          <div class="form-group">
-            <label for="thana">Thana :</label>
-            <input type="text" id="thana" name="thana" class="form-control" placeholder="Enter thana" required>
-          </div>
+  </div>
 
 
-          <script>
+
+
+<script>
             function initMap() {
 
 
@@ -141,217 +423,6 @@
 
 
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgEFd1S4iVxaQwAFrRJg5gmtYd3RW2wRc&callback=initMap"></script>
-
-        </div><!-- end left -->
-        <div class="right">
-          <div class="form-group">
-            <label for="district">District :</label>
-            <input type="text" id="district" name="district" class="form-control" placeholder="Enter District" required>
-          </div>
-          <div class="form-group">
-            <label for="floor">Floor :</label>
-            <input type="text" id="floor" name="floor" class="form-control" placeholder="Enter floor" required>
-          </div>
-          <label for="room">Select Room :</label>
-
-          <select class="form-control  id=" type" name="room" form="type">
-
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-
-          </select>
-          <div class="price">
-            <div class="form-group">
-              <label for="price">price :</label>
-              <input type="text" id="price" name="price" class="form-control" placeholder="Enter Price" required>
-            </div>
-            <div class="form-group">
-              <label for="price">Add your House Image :</label>
-              <input type="file" name="image">
-            </div>
-
-
-
-          </div>
-
-          <input type="hidden" name="map" value='<?php echo $ab; ?>'>
-
-          <input type="hidden" name="id" value="<?php echo $owner_id; ?>">
-          <div class="but">
-            <button type="submit" name="addproperties" class="btn btn-primary" style="margin-bottom:80px">Next</button>
-          </div>
-        </div><!-- end right -->
-      </form>
-    </div>
-
-
-
-
-
-
-
-    <div class="part_2">
-      <div class="container">
-        <ul class="list-unstyled">
-          <!-- Products -->
-          <?php
-          foreach ($property_info_owner as $i => $p_info) : ?>
-            <form action="interested_property.php" method="POST">
-              <li class="card border shadow-none mb-3 mb-md-5">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <img class="card-img" src="../image/<?php echo  $p_info['image']; ?>" alt="Image Description">
-                  </div>
-
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <div class="mb-2">
-                        <a class="d-inline-block text-body small font-weight-bold mb-1" href="#"><?php echo  $p_info['house_no']; ?>/<?php echo  $p_info['street']; ?>,<?php echo  $p_info['thana']; ?>,<?php echo  $p_info['district']; ?></a>
-                        <span class="d-block font-size-1">
-                          <a class="text-inherit flor-room" href="#">Floor :<?php echo  $p_info['floor']; ?> Room no :<?php echo  $p_info['room']; ?></a>
-                          <span class="badge badge-success badge-pill ml-1" <?php if ($p_info['status'] == "Booked") { ?> style="background-color:red;" <?php } ?> <?php if ($p_info['status'] == "Someone Interested") { ?> style="background-color:yellow; color:black;" <?php } ?>>
-                            <?php
-                            echo $p_info['status'];
-                            ?>
-                          </span>
-                        </span>
-                        <div class="d-block">
-                          <span class="h5">৳<?php echo  $p_info['price']; ?></span>
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <a class="d-inline-flex align-items-center small" href="#">
-                          <div class="text-warning mr-2">
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </form>
-            <!-- End Products -->
-          <?php endforeach; ?>
-          <!-- End Products -->
-        </ul>
-      </div>
-    </div><!-- end part-2 -->
-
-
-
-
-
-
-    <div class="part_3">
-      <table class="table table-hover">
-        <thead class="bg-info th">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Contact No</th>
-            <th scope="col">Type</th>
-            <th scope="col">House No</th>
-            <th scope="col">House Area</th>
-            <th scope="col">Thana</th>
-            <th scope="col">Floor</th>
-            <th scope="col">ROOM</th>
-            <th scope="col">Confirm</th>
-            <th scope="col">Reject</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($shows as $i => $show) : ?>
-            <tr>
-              <td><?php echo $show['username'] ?></td>
-              <td><?php echo $show['email'] ?></td>
-              <td><?php echo $show['contact_no'] ?></td>
-              <td><?php echo $show['type'] ?></td>
-              <td><?php echo $show['house_no'] ?></td>
-              <td><?php echo $show['area'] ?></td>
-              <td><?php echo $show['thana'] ?></td>
-              <td><?php echo $show['floor'] ?></td>
-              <td><?php echo $show['room'] ?></td>
-              <td>
-                <a href="confirm_property.php?id=<?php echo $show['id'] ?> && p_details_id=<?php echo $show['p_details_id'] ?> && owner_id=<?php echo $owner_id ?>">Confirm</a>
-              </td>
-              <td>
-                <a href="not_confirm_property.php?id=<?php echo $show['id'] ?> && p_details_id=<?php echo $show['p_details_id'] ?> && owner_id=<?php echo $owner_id ?>">Reject</a>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-
-
-        </tbody>
-      </table>
-
-    </div>
-
-
-    <div class="part_4">
-      <div class="container">
-        <ul class="list-unstyled">
-          <!-- Products -->
-          <?php
-          foreach ($property_reject_info_owner as $i => $p_info) : ?>
-            <form action="interested_property.php" method="POST">
-              <li class="card border shadow-none mb-3 mb-md-5">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <img class="card-img" src="../image/<?php echo  $p_info['image']; ?>" alt="Image Description">
-                  </div>
-
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <div class="mb-2">
-                        <a class="d-inline-block text-body small font-weight-bold mb-1" href="#"><?php echo  $p_info['house_no']; ?>/<?php echo  $p_info['street']; ?>,<?php echo  $p_info['thana']; ?>,<?php echo  $p_info['district']; ?></a>
-                        <span class="d-block font-size-1">
-                          <a class="text-inherit flor-room" href="#">Floor :<?php echo  $p_info['floor']; ?> Room no :<?php echo  $p_info['room']; ?></a>
-                          <span class="badge badge-success badge-pill ml-1" <?php if ($p_info['status'] == "Booked") { ?> style="background-color:red;" <?php } ?> <?php if ($p_info['status'] == "Someone Interested") { ?> style="background-color:yellow; color:black;" <?php } ?>>
-                            <?php
-                            echo $p_info['status'];
-                            ?>
-                          </span>
-                        </span>
-                        <div class="d-block">
-                          <span class="h5">৳<?php echo  $p_info['price']; ?></span>
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <a class="d-inline-flex align-items-center small" href="#">
-                          <div class="text-warning mr-2">
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                            <i class="far fa-star text-muted"></i>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </form>
-            <!-- End Products -->
-          <?php endforeach; ?>
-          <!-- End Products -->
-        </ul>
-      </div>
-    </div>
-  </div><!-- end contaiber -->
-
 
 
   <script type="text/javascript">
