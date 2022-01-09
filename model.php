@@ -148,7 +148,7 @@ function loginUser($data)
                 $_SESSION["username"] = $data["username"];
                 $_SESSION["password"] = $data["password"];
 
-                echo "<script>location.href='welcome.php'</>";
+                echo "<script>location.href='welcome.php'</script>";
             }
         } else {
             echo "<script>alert('uname or pass incorrect!')</script>";
