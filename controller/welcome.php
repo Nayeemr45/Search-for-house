@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
 		$confirm=show_confirm_interested_property($user_id);
 
 		$interested_people=show_someone_interested_people();
-
+		
 		//print_r($interested_people);
 		//$check_p_id=p_id_interested_property($user_id);
 

@@ -12,6 +12,7 @@
  -->
 
   <!-- Bootstrap file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <!-- Custom Css file -->
@@ -21,7 +22,11 @@
   <link rel="stylesheet" href="../css/user.css">
   <link rel="shortcut icon" href="#" type="image/x-icon">
 </head>
+<style>
+/* .info-modal:hover{
 
+} */
+</style>
 <body>
 
   <div class="container-fluid">
@@ -97,14 +102,88 @@
                             ?>
                           </span>
                           <span class="d-block font-size-1">
-
                             <a class="text-inherit" href="#">Floor :<?php echo  $p_info['floor']; ?> Room no :<?php echo  $p_info['room']; ?></a><br>
                             Email :<a class="text-inherit" href="mailto:<?php echo  $p_info['email']; ?>"><?php echo  $p_info['email']; ?> </a><br>
                             Contact :<a class="text-inherit" href="tel:88 <?php echo  $p_info['contact']; ?>"><?php echo  $p_info['contact']; ?></a>
 
                           </span>
+                          <!-- <span data-toggle="tooltip" data-placement="right" placement="right"
+                          title="Water Supply: <?php  echo $p_info['water_supply'] ?> Gas Supply: <?php  echo $p_info['gas_supply'] ?>
+                          Electricity Supply: <?php  echo $p_info['electricity_supply'] ?>
+                          Security Guard: <?php  echo $p_info['security_guard'] ?>
+                          Security Camera: <?php  echo $p_info['security_camera'] ?>
+                          Garage: <?php  echo $p_info['garage'] ?>
+                          "> -->
+                          <?php
+                        echo $p_info['rating'];
+                        if($p_info['rating']){
+                            if(is_float(5-$p_info['rating'])){
+                              $float_val = 5-$p_info['rating'];
+                              $val = strval($float_val);
+                              if(!empty(explode(".", $float_val)[1])){
+                                $val2 = explode(".", $float_val)[1];
+                                // print_r($val2);
+                                // print_r "val2----".$val2;
+                              }else{
+                                $val2 = 0;
+                              }
+                              for($i=1;$i<=$p_info['rating'];$i++){
+                                  echo '<i class="fa fa-star" style="color:orange"></i>';
+                              }
+                              if($val2 === '5'){
+                                for($i=1;$i<=1;$i++){
+                                  echo '<i class="fa fa-star-half-o"" style="color:orange"></i>';
+                                }
+                              }
+                              for($i=1;$i<=5-$p_info['rating'];$i++){
+                                echo '<i class="fa fa-star-o"" style="color:orange"></i>';
+                              }
+                            }
+                          
+                        }
+                        else{
+                          echo "<i class='fa fa-star' style='color:orange'></i>" ;
+                        }
+                        ?>
+                        </span>
+
+                        <!-- Modal -->
+                        <div class="modal modal-dialog modal-dialog-centered" id="<?php echo $p_info['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Star Info</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Water Supply: <?php  echo $p_info['water_supply'] ?><br>
+                                Gas Supply: <?php  echo $p_info['gas_supply'] ?><br>
+                                Electricity Supply: <?php  echo $p_info['electricity_supply'] ?><br>
+                                Security Guard: <?php  echo $p_info['security_guard'] ?><br>
+                                Security Camera: <?php  echo $p_info['security_camera'] ?><br>
+                                Garage: <?php  echo $p_info['garage'] ?>"
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <span class="info-modal" data-toggle="modal" data-target="#<?php echo $p_info['id']?>" style="cursor: pointer">
+                          <i class='fa fa-info' style='
+                                background: transparent;
+                                color: orange;
+                                border: 1px solid orange;
+                                padding: 4px 9px;
+                                border-radius: 30px;
+                                font-size: 14px;
+                                margin-left: 10px;'>
+                            </i>
+                          </span>
                           <div class="d-block">
                             <span class="h5">৳<?php echo  $p_info['price']; ?></span>
+                            <span class="h5"><?php echo $user_id; ?></span>
+                            <span class="h5"><?php echo $p_info['property_id']; ?></span>
                           </div>
                           <div class="show_map">
 
@@ -119,21 +198,13 @@
                         </div>
 
                         <div class="mb-3">
-                          <a class="d-inline-flex align-items-center small" href="#">
-                            <div class="text-warning mr-2">
-                              <i class="far fa-star text-muted"></i>
-                              <i class="far fa-star text-muted"></i>
-                              <i class="far fa-star text-muted"></i>
-                              <i class="far fa-star text-muted"></i>
-                              <i class="far fa-star text-muted"></i>
-                            </div>
-                          </a>
                         </div>
                         <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-                        <input type="hidden" name="p_id" value="<?php echo $p_info['id']; ?>">
+                        <input type="hidden" name="p_id" value="<?php echo $p_info['property_id']; ?>">
+                        <!-- <input type="hidden" name="p_id" value="<?php echo $p_info['id']; ?>"> -->
 
                         <button type="submit" <?php if ($p_info['status'] == "Booked") {  ?> disabled="disabled" <?php } ?> <?php foreach ($check_user_id as $i => $check) :
-                                                                                                                              if ($check['user_id'] == $user_id and $check['p_details_id'] == $p_info['id']) { ?> disabled="disabled" <?php }
+                                                                                                                              if ($check['user_id'] == $user_id and $check['p_details_id'] == $p_info['property_id']) { ?> disabled="disabled" <?php }
                                                                                                                                                                                                                                 endforeach;
 
                                                                                                                                                                                                                                     ?> id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1">Interested</button>

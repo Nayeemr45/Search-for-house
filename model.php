@@ -258,7 +258,12 @@ function loginUser2($data)
 function property_info()
 {
     $conn = db_conn();
-    $selectQuery = "SELECT property_details.*,owner.email,owner.contact FROM `property_details`INNER JOIN `owner` on property_details.owner_id=owner.id WHERE property_details.approve ='yes'  ORDER BY `id` DESC";
+    $selectQuery = "SELECT property_details.*,property_rating_details.*,owner.email,owner.contact FROM `property_rating_details` INNER JOIN `property_details` on property_rating_details.property_id=property_details.id INNER JOIN `owner` on property_details.owner_id=owner.id Where property_details.approve='yes' AND property_rating_details.property_id=property_details.id GROUP BY property_rating_details.property_id;";
+    // $selectQuery = "SELECT property_details.*,b.*,owner.email,owner.contact FROM `property_details` AS a, `property_rating_details` AS b , `property_details` INNER JOIN `owner` on property_details.owner_id=owner.id Where a.approve='yes' AND a.id=b.property_id GROUP BY a.id , b.property_id";
+
+    // $selectQuery = "SELECT * FROM `property_details` AS a, `property_rating_details` AS b  Where area LIKE '$data%' AND approve='yes' AND a.id=b.property_id";
+    // $selectQuery = "SELECT property_details.*,owner.email,owner.contact, property_rating_details.* FROM `property_details` INNER JOIN `owner` on property_details.owner_id=owner.id INNER JOIN property_rating_details on property_details.id=property_rating_details.property_id  WHERE property_details.id=property_rating_details.property_id AND property_details.approve ='yes'  ORDER BY `id` DESC";
+    // $selectQuery = "SELECT property_details.*,owner.email,owner.contact FROM `property_details`INNER JOIN `owner` on property_details.owner_id=owner.id WHERE property_details.approve ='yes'  ORDER BY `id` DESC";
     try {
         $stmt = $conn->query($selectQuery);
     } catch (PDOException $e) {
