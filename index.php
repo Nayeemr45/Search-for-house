@@ -144,7 +144,7 @@
 
   <footer>
     <div class="footer">
-      <p>© Copyright 2020, All Rights Reserved</p>
+      <p>© Copyright 2022, All Rights Reserved.</p>
     </div>
   </footer>
 

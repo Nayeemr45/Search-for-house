@@ -16,18 +16,6 @@
 
 <body>
   <div class="container-fluid">
-
-    <!--       <div class="back">
-      <nav class="navbar navbar-light bg-light fixed-top">
-      <button type="submit" id="submit" name="interested" class="btn btn-sm btn-outline-primary btn-pill transition-3d-hover mr-1"><a href="../index.php">Back</a></button>
-      </nav>
-
-      </div> -->
-
-
-
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="logo">
         <img src="../image/LOGO1.png" alt="Logo">

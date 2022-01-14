@@ -521,6 +521,30 @@ function property_info_admin()
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $rows;
 }
+function interseted_property_info_admin()
+{
+    $conn = db_conn();
+    $selectQuery = "SELECT * FROM `interested_property` AS a, `property_details` AS b, `owner` AS c , `user` AS d WHERE a.p_details_id= b.id AND a.owner_id= c.id AND a.user_id=d.id";
+    try {
+        $stmt = $conn->query($selectQuery);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+function booked_property_info_admin()
+{
+    $conn = db_conn();
+    $selectQuery = "SELECT *,a.id AS 'property_id' FROM `property_details` As a, `owner` AS b, `user` As c WHERE a.status='Booked' AND a.owner_id=b.id AND a.user_id=c.id";
+    try {
+        $stmt = $conn->query($selectQuery);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
 
 function user_id_interested_property($user_id)
 {
@@ -752,31 +776,6 @@ function check_owner_name($owner_name)
     }
     $conn = null;
 }
-
-
-
-
-/*       function delete_properties($p_id){
-            $conn = db_conn();
-            $selectQuery = "INSERT into interested_property (p_details_id, user_id ,owner_id)
-            VALUES (:p_details_id , :user_id, (SELECT owner_id from property_details WHERE id= $p_id ))";
-            
-            try{
-                $stmt = $conn->prepare($selectQuery);
-                $stmt->execute([
-                    ':p_details_id' => $data['p_id'],
-                    ':user_id' => $data['user_id']
-                ]);
-            }catch(PDOException $e){
-                echo $e->getMessage();
-            }
-        
-            $conn = null;
-            return true;
-        }
-         */
-
-
 
 function delete_properties($p_id)
 {
